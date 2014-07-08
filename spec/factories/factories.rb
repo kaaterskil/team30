@@ -11,7 +11,6 @@ FactoryGirl.define do
 
   factory :team do
     name { Faker::Company.name }
-    starting_on { rand(0..60).days.ago(Date.today) }
-    ending_on { starting_on + 30.days }
+    is_active true
   end
 end
