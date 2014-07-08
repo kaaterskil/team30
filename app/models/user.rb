@@ -15,6 +15,12 @@ class User < ActiveRecord::Base
   # For teams that the user manages as its leader
   has_many :managed_teams, foreign_key: :leader_id, class_name: 'Team'
 
+  # Bidirectional many-to-one associaiton, inverse side
+  has_many :sent_messages, foreign_key: :sender_id, class_name: 'Message'
+
+  # Bidirectional many-to-one associaiton, inverse side
+  has_many :received_messages, foreign_key: :recipient_id, class_name: 'Message'
+
   # Bidirectional many-to-many association
   has_many :rosters, dependent: :destroy
   has_many :teams, through: :rosters
@@ -22,6 +28,8 @@ class User < ActiveRecord::Base
   validates :known_by, :birth_date, :gender, :height, presence: true
   validates :gender, inclusion: { in: GENDER, message: "%{value} is not a valid gender" }
   validates :height, numericality: { only_integer: true, message: "%{value} is not an integer" }
+
+  # ---------- Methods ---------- #
 
   # Returns true if this user is available to join a team, false otherwise.
   # In other words, the method returns true if this user is not assigned
