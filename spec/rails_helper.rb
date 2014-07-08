@@ -4,6 +4,13 @@ require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 
+# Added to use Capybara for feature specs
+require 'capybara/rails'
+
+# Added to use Poltergeist for JavaScript-enabled tests
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -18,13 +25,11 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  # Removed since we're not using ActiveRecord fixtures
+  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  # config.use_transactional_fixtures = true
 
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
-  config.use_transactional_fixtures = true
+  # Added so we can do `create` instead of `FactoryGirl.create` and etc.
   config.include FactoryGirl::Syntax::Methods
 
   # RSpec Rails can automatically mix in different behaviours to your tests
