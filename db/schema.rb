@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707183555) do
+ActiveRecord::Schema.define(version: 20140708010825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,12 +97,12 @@ ActiveRecord::Schema.define(version: 20140707183555) do
   create_table "teams", force: true do |t|
     t.integer  "parent_id"
     t.string   "name"
-    t.integer  "leader_id",                               null: false
     t.date     "starting_on"
     t.date     "ending_on"
     t.boolean  "is_target_weight_locked", default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "leader_id"
   end
 
   add_index "teams", ["leader_id"], name: "index_teams_on_leader_id", using: :btree
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 20140707183555) do
     t.string   "gender"
     t.integer  "height"
     t.date     "birth_date"
+    t.string   "known_by"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
