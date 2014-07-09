@@ -5,6 +5,8 @@ class Roster < ActiveRecord::Base
   belongs_to :user
   belongs_to :team
 
+  # ---------- Methods ---------- #
+
   # Computes and saves the user's BMR and TDEE. If the user has set a target
   # weight, the method will compute and save the user's target calorie intake
   # goal per day over the life of the challenge,

@@ -1,0 +1,15 @@
+<% flash.each do |key, value| %>
+<%= content_tag :div, value, class: "flash #{key}" %>
+<% end %>
+
+<%= form_for @team do |f| %>
+<div class="field-container">
+  <div class="field-label"><%= f.label :name, 'Team Name' %></div>
+  <div class="field-element"><%= f.text_field :name, autofocus: true %></div>
+</div>
+
+<div class="field-container">
+  <div class="field-label"></div>
+  <div class="field-element"><%= f.submit 'Save' %></div>
+</div>
+<% end %>

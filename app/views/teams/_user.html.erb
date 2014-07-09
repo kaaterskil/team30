@@ -1,0 +1,12 @@
+<li>
+  <% if user == current_user %>
+  <div class=""><%= link_to user.known_by, team_user_path(@team.id, user.id) %></div>
+  <% else %>
+  <div class=""><%= user.known_by %></div>
+  <% end %>
+  <div class="">
+    <% @team_data[user.id].each do |v| %>
+    <span class=""><%= sprintf('%d', v) %></span>
+    <% end %>
+  </div>
+</li>

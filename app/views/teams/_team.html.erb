@@ -1,5 +1,23 @@
 <li>
+  <div class="">
+  <% if user_signed_in? && team.leader == current_user %>
+  <div class="">
+    <div class=""><%= link_to 'Edit', edit_team_path(team) %></div>
+    <div class=""><%= link_to 'Delete', team_path(team), method: :delete, data: {confirm: 'Are you sure?'} %></div>
+  </div>
+  <% end %>
+
+  <% if user_signed_in? && team.users.include?(current_user) %>
+  <div class=""><%= link_to team.name, team_path(team) %></div>
+  <% else %>
   <div class=""><%= team.name %></div>
-  <div class=""><%= team.starting_on %></div>
-  <div class=""><%= team.ending_on %></div>
+  <% end %>
+
+  <div class=""><%= team.day_no %></div>
+  </div>
+  <div class="">
+    <% @data[team.id].each do |v| %>
+    <span class=""><%= sprintf('%d', v) %></span>
+    <% end %>
+  </div>
 </li>

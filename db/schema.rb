@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140708110734) do
+ActiveRecord::Schema.define(version: 20140709013831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,9 +22,11 @@ ActiveRecord::Schema.define(version: 20140708110734) do
     t.integer  "total_calories"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "team_id"
   end
 
   add_index "exercises", ["entry_date"], name: "index_exercises_on_entry_date", using: :btree
+  add_index "exercises", ["team_id"], name: "index_exercises_on_team_id", using: :btree
   add_index "exercises", ["user_id"], name: "index_exercises_on_user_id", using: :btree
 
   create_table "ingredients", force: true do |t|
@@ -54,9 +56,11 @@ ActiveRecord::Schema.define(version: 20140708110734) do
     t.integer  "total_calories"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "team_id"
   end
 
   add_index "meals", ["meal_date"], name: "index_meals_on_meal_date", using: :btree
+  add_index "meals", ["team_id"], name: "index_meals_on_team_id", using: :btree
   add_index "meals", ["user_id"], name: "index_meals_on_user_id", using: :btree
 
   create_table "messages", force: true do |t|
@@ -139,9 +143,11 @@ ActiveRecord::Schema.define(version: 20140708110734) do
     t.integer  "total_calories"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "team_id"
   end
 
   add_index "weigh_ins", ["entry_date"], name: "index_weigh_ins_on_entry_date", using: :btree
+  add_index "weigh_ins", ["team_id"], name: "index_weigh_ins_on_team_id", using: :btree
   add_index "weigh_ins", ["user_id"], name: "index_weigh_ins_on_user_id", using: :btree
 
 end

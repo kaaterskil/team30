@@ -1,4 +1,21 @@
+<% if !user_signed_in? %>
 <%= render template: 'shared/navigation' %>
+<% else %>
+<%= render template: 'shared/session_navigation' %>
+<% end %>
+
+<% if user_signed_in? %>
+<div class="">
+  <div class=""><%= link_to 'Create a Team!', new_team_path %></div>
+  <div class=""><%= link_to 'Say Hello', new_user_message_path(current_user.id) %></div>
+</div>
+<% end %>
+
 <ul>
-  <%= render partial: 'team', collection: @teams %>
+  <li>
+    <div class=""> </div>
+    <div class="">Team Name</div>
+    <div class="">Day</div>
+  </li>
+  <%= render partial: 'team', collection: @teams, data: @data %>
 </ul>

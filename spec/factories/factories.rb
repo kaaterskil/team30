@@ -4,9 +4,9 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
     known_by { Faker::Name.first_name}
-    birth_date { rand(20..60).years.ago(Date.today) }
+    birth_date { rand(25..65).years.ago(Date.today) }
     gender { User::GENDER.sample }
-    height { rand(54..70) }
+    height { rand(59..72) }
   end
 
   factory :team do

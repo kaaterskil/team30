@@ -1,0 +1,45 @@
+<%= render template: 'shared/session_navigation' %>
+
+<h2><%= "Team #{@team.name}" %></h2>
+
+<div class="">Day <%= @team.day_no %></div>
+
+<!-- Team Information -->
+<div class="">
+  <div class="field-container">
+    <div class="field-label">Name</div>
+    <div class="field-element"><%= @team.name %></div>
+  </div>
+  <div class="field-container">
+    <div class="field-label">Leader</div>
+    <div class="field-element"><%= @team.leader.known_by %></div>
+  </div>
+  <div class="field-container">
+    <div class="field-label">Status</div>
+    <div class="field-element"><%= @team.status %></div>
+  </div>
+  <div class="field-container">
+    <div class="field-label">Starting On</div>
+    <div class="field-element"><%= @team.starting_on %></div>
+  </div>
+  <div class="field-container">
+    <div class="field-label">Ending On</div>
+    <div class="field-element"><%= @team.ending_on %></div>
+  </div>
+</div>
+
+<!-- Results -->
+<div class="">
+  <div class="">Results</div>
+  <% @data.each do |v| %>
+  <span class=""><%= sprintf('% .0f', v) %></span>
+  <% end %>
+</div>
+
+<!-- Roster -->
+<div class="">
+  <div class="">Roster</div>
+  <ul>
+    <%= render partial: 'user', collection: @users %>
+  </ul>
+</div>
