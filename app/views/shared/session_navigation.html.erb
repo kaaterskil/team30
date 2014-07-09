@@ -1,0 +1,16 @@
+<div>
+  <ul>
+    <li><%= link_to 'Team30',root_path %></li>
+    <li>
+        <span class="">Actions</span>
+        <ul>
+            <li><%= link_to 'Say Hello', new_user_message_path(current_user.id) %></li>
+            <li><%= link_to 'Enter a Meal' %></li>
+            <li><%= link_to 'Enter an Exercise' %></li>
+            <li><%= link_to 'Weigh In' %></li>
+        </ul>
+    </li>
+    <li><%= "hello #{current_user.known_by}" %></li>
+    <li><%= link_to 'Logout', destroy_user_session_path %></li>
+</ul>
+</div>
