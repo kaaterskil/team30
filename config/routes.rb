@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :users, only: :show
   end
 
-  resources :users, only: [:show, :edit] do
+  resources :users, only: [:show, :edit, :update] do
     resources :messages, only: [:index, :new, :create]
   end
 

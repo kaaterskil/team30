@@ -1,6 +1,6 @@
 <li>
   <% if user == current_user %>
-  <div class=""><%= link_to user.known_by, team_user_path(@team.id, user.id) %></div>
+  <div class=""><%= link_to user.known_by, user_path(user.id) %></div>
   <% else %>
   <div class=""><%= user.known_by %></div>
   <% end %>

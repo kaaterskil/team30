@@ -11,15 +11,15 @@ class User < ActiveRecord::Base
 
   GENDER = %w(Female Male)
 
-  # Bidirectional many-to-one association, inverse side
+  # Bidirectional one-to-many  association, inverse side
   # For teams that the user manages as its leader
   has_many :managed_teams, foreign_key: :leader_id, class_name: 'Team'
 
-  # Bidirectional many-to-one associaiton, inverse side
-  has_many :sent_messages, foreign_key: :sender_id, class_name: 'Message'
-
-  # Bidirectional many-to-one associaiton, inverse side
-  has_many :received_messages, foreign_key: :recipient_id, class_name: 'Message'
+  # Bidirectional one-to-many associations, inverse side
+  has_many :exercises, dependent: :destroy
+  has_many :meals, dependent: :destroy
+  has_many :weigh_ins, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   # Bidirectional many-to-many association
   has_many :rosters, dependent: :destroy
@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
   #
   # Returns true on success, false otherwise.
   def add_user_to_team(team, user)
-    raise UserNotTeamLeaderException if !is_team_leader?(team)
+    # raise UserNotTeamLeaderException if !is_team_leader?(team)
     raise Team::TeamInProgressError if team.is_in_progress?
     raise Team::TeamIsClosedError if team.is_closed?
     raise UserNotAvailableException if !user.available?
@@ -98,6 +98,7 @@ class User < ActiveRecord::Base
 
     team.starting_on = Date.today
     team.ending_on = 30.days.from_now
+    team.is_active = true
     team.save
     true
   end
@@ -109,5 +110,43 @@ class User < ActiveRecord::Base
   # Returns true if this user is the given team's leader, false otherwise.
   def is_team_leader?(team)
     managed_teams.include?(team)
+  end
+
+  # Returns a hash of daily calorie differentials from target, in percent,
+  # by team. The hash key is the team name and the value is an aray of the
+  # daily results.
+  def fetch_data
+    result = {}
+    teams.each { |team| result[team.name] = fetch_team_data(team) }
+    result
+  end
+
+  # Returns an array of daily calorie differentials from target, in percent.
+  def fetch_team_data(team)
+    data = []
+    (0..30).each do |i|
+      if !team.starting_on.nil?
+        challenge_date = team.starting_on + i.days
+        data[i] = get_daily_performance(team, challenge_date)
+      else
+        data[i] = 0.00
+      end
+    end
+    data
+  end
+
+  # Returns the calorie differential from target, in percentage terms, for
+  # the given challlenge date
+  def get_daily_performance(team, challenge_date)
+    target = rosters.sum(:target_calories_per_day).
+      where('team_id = ?', team.id)
+    calories_from_meals = meals.join().sum(:total_calories).
+      where('team_id = ? and meal_date = ?', team.id, challenge_date)
+    calories_from_exercise = exercises.sum(:total_calories).
+      where('team_id = ? and entry_date = ?', team.id, challenge_date)
+    calories_from_weigh_ins = weigh_ins.sum(:total_calories).
+      where('team_id = ? and entry_date = ?', team.id, challenge_date)
+    total_calories = calories_from_meals - calories_from_exercise + calories_from_weigh_ins
+    (total_calories - target) / target
   end
 end

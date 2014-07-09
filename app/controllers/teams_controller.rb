@@ -61,7 +61,7 @@ class TeamsController < ApplicationController
 
   def fetch_team_data
     @team_data = {}
-    @team.users.each { |user| @team_data[user.id] = user.fetch_data(@team) }
+    @team.users.each { |user| @team_data[user.id] = user.fetch_team_data(@team) }
   end
 
   def team_params

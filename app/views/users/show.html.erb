@@ -1,0 +1,41 @@
+<%= render template: 'shared/session_navigation' %>
+
+<h2><%= "#{@user.known_by}" %></h2>
+
+<!-- Profile -->
+<div class="">
+  <div class="">
+    <div class="">Gender</div>
+    <div class=""><%= @user.gender %></div>
+  </div>
+    <div class="">Birth Date</div>
+    <div class=""><%= @user.birth_date %></div>
+  </div>
+    <div class="">Height</div>
+    <div class=""><%= @user.height %> inches</div>
+  </div>
+  <div class=""><%= link_to 'Edit', edit_user_path(@user.id) %></div>
+</div>
+
+<!-- Teams -->
+<div class="">
+  <div class="">Your Results</div>
+  <div class="">
+    <ul>
+      <% @data.each do |team_name, results| %>
+      <div class="">
+        <div class=""><%= team_name %></div>
+        <div class="">
+          <% results.each do |v| %>
+          <span class=""><%= sprintf('%d', v) %></span>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- Messages -->
+<div class=""><%= link_to 'Say Hello', new_user_message_path(@user.id) %></div>
+<%= render template: 'shared/messages', messages: @user.messages %>
