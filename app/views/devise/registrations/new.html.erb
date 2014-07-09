@@ -4,22 +4,27 @@
 <%= devise_error_messages! %>
 
 <div class="field-container">
-  <div class="field-label"><%= f.label :email %></div>
+  <div class="field-label"><%= f.label :email, 'Email' %></div>
   <div class="field-element"><%= f.email_field :email, autofocus: true %></div>
 </div>
 
 <div class="field-container">
-  <div class="field-label"><%= f.label :password %></div>
+  <div class="field-label"><%= f.label :password, 'Password' %></div>
   <div class="field-element"><%= f.password_field :password, autocomplete: "off" %></div>
 </div>
 
 <div class="field-container">
-  <div class="field-label"><%= f.label :password_confirmation, 'Confirm password' %></div>
+  <div class="field-label"><%= f.label :password_confirmation, 'Confirm Password' %></div>
   <div class="field-element"><%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 </div>
 
 <div class="field-container">
-  <div class="field-label"><%= f.label :birth_date, 'Birth date' %></div>
+  <div class="field-label"><%= f.label :known_by, 'Name' %></div>
+  <div class="field-element"><%= f.text_field :known_by %></div>
+</div>
+
+<div class="field-container">
+  <div class="field-label"><%= f.label :birth_date, 'Birth Date' %></div>
   <div class="field-element"><%= f.date_field :birth_date %></div>
 </div>
 
@@ -34,7 +39,8 @@
 </div>
 
 <div class="field-container">
-  <div class="field-element"><%= f.submit "Sign up" %></div>
+  <div class="field-label"></div>
+  <div class="field-element"><%= f.submit "Sign Up" %></div>
 </div>
 <% end %>
 
