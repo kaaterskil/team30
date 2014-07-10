@@ -1,0 +1,15 @@
+<%= render template: 'shared/session_navigation' %>
+
+<h2>My Meals</h2>
+
+<div class="">
+  <ul>
+    <li>
+      <div class=""></div>
+      <div class="">Date</div>
+      <div class="">Type</div>
+      <div class="">Calories</div>
+    </li>
+    <%= render partial: 'meal', collection: @meals %>
+  </ul>
+</div>

@@ -1,0 +1,25 @@
+<% flash.each do |key, value| %>
+<%= content_tag :div, value, class: "flash #{key}" %>
+<% end %>
+
+<%= form_for @meal do |f| %>
+<div class="field-container">
+  <div class="field-label"><%= f.label :meal_date, 'Date' %></div>
+  <div class="field-element"><%= f.date_field :meal_date, autofocus: true, placeholder: "#{Date.today}" %></div>
+</div>
+
+<div class="field-container">
+  <div class="field-label"><%= f.label :team_id, 'Team' %></div>
+  <div class="field-element"><%= f.collection_select :team_id, @user.teams, :id, :name, include_blank: true %></div>
+</div>
+
+<div class="field-container">
+  <div class="field-label"><%= f.label :meal_type, 'Type' %></div>
+  <div class="field-element"><%= f.select :meal_type, Meal::MEAL_TYPES, include_blank: true %></div>
+</div>
+
+<div class="field-container">
+  <div class="field-label"></div>
+  <div class="field-element"><%= f.submit 'Save' %></div>
+</div>
+<% end %>

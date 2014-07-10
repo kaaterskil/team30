@@ -1,0 +1,5 @@
+<li>
+  <div class=""><%= link_to 'Delete', meal_ingredient_path(ingredient.meal_id, ingredient.id), method: :delete, data: {confirm: 'Are you sure?'} %></div>
+  <div class=""><%= ingredient.item_description %></div>
+  <div class=""><%= ingredient.calories %></div>
+</li>

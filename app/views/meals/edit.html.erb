@@ -1,0 +1,4 @@
+<%= render template: 'shared/session_navigation' %>
+
+<h2><%= "Edit my #{@meal.meal_type} from #{@meal.meal_date}" %></h2>
+<%= render 'form', meal: @meal %>

@@ -1,0 +1,9 @@
+<li>
+  <div class="">
+    <div><%= link_to 'Edit', edit_meal_path(meal.id) %></div>
+    <div><%= link_to 'Delete', meal_path(meal.id), method: :delete, data: {confirm: 'Are you sure?'} %></div>
+  </div>
+  <div class=""><%= meal.meal_date %></div>
+  <div class=""><%= meal.meal_type %></div>
+  <div class=""><%= meal.total_calories %></div>
+</li>
