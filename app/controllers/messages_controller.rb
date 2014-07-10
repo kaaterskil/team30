@@ -2,12 +2,12 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @messages = Message.where('user_id = ?', params[:user_id])
+    @messages = Message.where('user_id = ?', current_user.id)
   end
 
   def new
     @message = Message.new
-    @user = User.find(params[:user_id])
+    @user = current_user.id
     @users = User.joins(:teams).
               joins('INNER JOIN rosters r2 ON teams.id = r2.team_id').
               where('r2.user_id = ? AND users.id != ?', @user.id, @user.id)

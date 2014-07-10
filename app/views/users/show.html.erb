@@ -37,5 +37,5 @@
 </div>
 
 <!-- Messages -->
-<div class=""><%= link_to 'Say Hello', new_user_message_path(@user.id) %></div>
+<div class=""><%= link_to 'Say Hello', new_message_path %></div>
 <%= render template: 'shared/messages', messages: @user.messages %>

@@ -7,7 +7,7 @@
 <% if user_signed_in? %>
 <div class="">
   <div class=""><%= link_to 'Create a Team!', new_team_path %></div>
-  <div class=""><%= link_to 'Say Hello', new_user_message_path(current_user.id) %></div>
+  <div class=""><%= link_to 'Say Hello', new_message_path %></div>
 </div>
 <% end %>
 
