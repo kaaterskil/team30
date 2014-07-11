@@ -8,8 +8,8 @@
 
 <%= form_for @message, url: { action: 'create' } do |f| %>
 <div class="field-container">
-  <div class="field-label"><%= f.label :recipient, 'To' %></div>
-  <div class="field-element"><%= f.collection_select :recipient_id , @users, :id, :known_by %></div>
+  <div class="field-label"><%= f.label :recipient_id, 'To' %></div>
+  <div class="field-element"><%= f.collection_select :recipient_id , @users, :id, :known_by, {prompt: 'Select a teammate...'} %></div>
 </div>
 
 <div class="field-container">

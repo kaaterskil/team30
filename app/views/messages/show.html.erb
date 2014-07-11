@@ -1,0 +1,11 @@
+<%= render template: 'shared/session_navigation' %>
+
+<h2>Message</h2>
+<div class="">
+  <div class="">
+    <div class=""><%= @message.sender.known_by %></div>
+    <div class=""><%= @message.recipient.known_by %></div>
+    <div class=""><%= @message.created_at.strftime("%B %e, %Y") %></div>
+  </div>
+  <div class=""><%= @message.content %></div>
+</div>

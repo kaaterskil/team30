@@ -1,0 +1,8 @@
+<%= render template: 'shared/session_navigation' %>
+
+<h2><%= @team.name %> Messages</h2>
+
+<div class="">
+  <div class=""><%= link_to 'Say Hello', new_team_message_path(@team.id) %></div>
+</div>
+<%= render partial: 'shared/messages', locals: { messages: @team.messages } %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140709231643) do
+ActiveRecord::Schema.define(version: 20140711171632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,8 +64,6 @@ ActiveRecord::Schema.define(version: 20140709231643) do
   add_index "meals", ["user_id"], name: "index_meals_on_user_id", using: :btree
 
   create_table "messages", force: true do |t|
-    t.integer  "sender_id",                    null: false
-    t.integer  "recipient_id",                 null: false
     t.integer  "team_id"
     t.integer  "thread_id"
     t.text     "content"
@@ -75,6 +73,8 @@ ActiveRecord::Schema.define(version: 20140709231643) do
     t.datetime "updated_at"
     t.integer  "user_id",                      null: false
     t.boolean  "sent",         default: true
+    t.integer  "sender_id",                    null: false
+    t.integer  "recipient_id",                 null: false
   end
 
   add_index "messages", ["created_at"], name: "index_messages_on_created_at", using: :btree

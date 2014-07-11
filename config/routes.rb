@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :users, only: :show
   end
 
-  resources :messages, only: [:index, :new, :create]
+  resources :messages, only: [:index, :new, :create, :show]
 
   resources :meals do
     resources :ingredients, only: [:create, :destroy]
@@ -21,9 +21,9 @@ Rails.application.routes.draw do
   resources :weigh_ins, except: :show
 
   # For team messaging
-  get 'teams/:team_id/messages', to: 'messages#team_index', as: 'team_messages'
-  post 'teams/:team_id/messages', to: 'messages#team_create', as: 'create_team_message'
-  get 'teams/:team_id/messages/new', to: 'messages#team_new', as: 'new_team_message'
+  get 'teams/:team_id/messages', to: 'team_messages#index', as: 'team_messages'
+  post 'teams/:team_id/messages', to: 'team_messages#create', as: 'create_team_message'
+  get 'teams/:team_id/messages/new', to: 'team_messages#new', as: 'new_team_message'
 
   # Nutritionix query processing
   post 'meals/:id/query', to: 'meals#show', as: 'nutritionix_query'
