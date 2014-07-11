@@ -2,6 +2,7 @@ class Team < ActiveRecord::Base
   class TeamInProgressError < RuntimeError; end
   class TeamIsClosedError < RuntimeError; end
   class TeamHasUncommittedMembersError < RuntimeError; end
+  class TeamNotStartedError < RuntimeError; end
 
   # Bidirectional many-to-one association: owning side
   # To team leader
@@ -15,7 +16,6 @@ class Team < ActiveRecord::Base
   has_many :exercises
   has_many :meals
   has_many :weigh_ins
-  has_many :messages, -> { :sent_to_team }
 
   validates :name, presence: true
 
@@ -43,6 +43,14 @@ class Team < ActiveRecord::Base
     else
       'Unknown'
     end
+  end
+
+  # Returns a collection of public messages sent by all team members.
+  def messages
+    Message.joins('INNER JOIN users u ON messages.sender_id = u.id').
+    joins('INNER JOIN rosters r ON r.user_id = u.id').
+    where('r.team_id = ? AND is_private = false AND sent = true', id).
+    order('messages.created_at DESC')
   end
 
   # Returns the number of days into the challenge, or zero if the challenge

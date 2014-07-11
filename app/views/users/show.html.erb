@@ -1,6 +1,6 @@
 <%= render template: 'shared/session_navigation' %>
 
-<h2><%= "#{@user.known_by}" %></h2>
+<h2><%= @user.known_by %></h2>
 
 <!-- Profile -->
 <div class="">
@@ -14,7 +14,7 @@
     <div class="">Height</div>
     <div class=""><%= @user.height %> inches</div>
   </div>
-  <div class=""><%= link_to 'Edit', edit_user_path(@user.id) %></div>
+  <div class=""><%= link_to 'Edit', edit_user_path %></div>
 </div>
 
 <%= render template: 'shared/personal_links' %>
@@ -40,4 +40,10 @@
 
 <!-- Messages -->
 <div class=""><%= link_to 'Say Hello', new_message_path %></div>
-<%= render template: 'shared/messages', messages: @user.messages %>
+<div class="">
+  <% if @user.messages.empty? %>
+  <div class="">You haven't been supporting your teammates. Send them a message!</div>
+  <% else %>
+  <%= render partial: 'shared/messages', locals: { messages: @user.messages } %>
+  <% end %>
+</div>

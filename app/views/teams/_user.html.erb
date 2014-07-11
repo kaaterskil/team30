@@ -5,7 +5,7 @@
   <div class=""><%= user.known_by %></div>
   <% end %>
   <div class="">
-    <% @team_data[user.id].each do |v| %>
+    <% @team_data[user.id].each do |k, v| %>
     <span class=""><%= sprintf('%d', v) %></span>
     <% end %>
   </div>

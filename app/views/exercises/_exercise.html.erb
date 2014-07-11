@@ -1,7 +1,7 @@
 <li>
   <div class="">
-    <div class=""><%= link_to 'Edit' edit_exercise_path(exercise.id) %></div>
-    <div class=""><%= link_to 'Delete' exercise_path(exercise.id), method: :delete, data: {confirm: 'Are you sure?'} %></div>
+    <div class=""><%= link_to 'Edit', edit_exercise_path(exercise.id) %></div>
+    <div class=""><%= link_to 'Delete', exercise_path(exercise.id), method: :delete, data: {confirm: 'Are you sure?'} %></div>
   </div>
   <div class=""><%= exercise.entry_date %></div>
   <div class=""><%= exercise.total_calories %></div>

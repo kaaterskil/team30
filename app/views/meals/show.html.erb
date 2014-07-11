@@ -5,7 +5,7 @@
 <div class=""><%= link_to 'All meals', meals_path %></div>
 
 <div class="">
-  <div class="">Foods</div>
+  <div class="">Servings</div>
   <div class="">
     <div class="">Search</div>
     <% search_form_options = {method: 'POST', id: 'homeSearchForm'} %>
@@ -27,13 +27,17 @@
   <% if !@hits.nil? %>
   <div class="">
     <div class="">Results</div>
+    <% flash.each do |key, value| %>
+    <%= content_tag :div, value, class: "flash #{key}" %>
+    <% end %>
+
     <% results_form_options = { method: 'POST', id: 'resultsForm' } %>
     <%= form_tag(meal_ingredients_path(@meal.id), results_form_options) do %>
     <%= hidden_field_tag('item_description', '', id: 'selectedDescription') %>
     <%= hidden_field_tag('calories', '', id: 'selectedCalories') %>
     <div class="field-container">
       <div class="field-element">
-        <% select_options = { include_blank: true, id: 'searchResultsSelect' } %>
+      <% select_options = { prompt: 'Select an item...', id: 'searchResultsSelect' } %>
         <%= select_tag('item_id', options_for_select(@foods), select_options) %>
       </div>
     </div>
@@ -45,10 +49,10 @@
     </div>
     <% end %>
   </div>
-<% end %>
+  <% end %>
 
   <div class="">
-    <div class="">Selected Foods</div>
+    <div class="">Selected Servings</div>
     <ul>
       <%= render partial: 'ingredient', collection: @ingredients %>
     </ul>
