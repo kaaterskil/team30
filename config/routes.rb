@@ -13,6 +13,10 @@ Rails.application.routes.draw do
     resources :ingredients, only: [:create, :destroy]
   end
 
+  resources :exercises, except: :show
+
+  resources :weigh_ins, except: :show
+
   # For team messaging
   get 'teams/:team_id/messages', to: 'messages#team_index', as: 'team_messages_path'
   post 'teams/:team_id/messages', to: 'messages#team_create', as: 'create_team_message_path'
