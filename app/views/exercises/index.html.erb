@@ -1,9 +1,11 @@
 <%= render template: 'shared/session_navigation' %>
 
+<%= render template: 'shared/personal_links' %>
+
 <h2>My Work Outs</h2>
 
 <% if current_user.fetch_active_team %>
-<div class=""><%= link_to 'Hit the Gym' new_exercise_path %></div>
+<div class=""><%= link_to 'Hit the Gym', new_exercise_path %></div>
 <% end %>
 
 <div class="">

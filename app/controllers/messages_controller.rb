@@ -7,10 +7,10 @@ class MessagesController < ApplicationController
 
   def new
     @message = Message.new
-    @user = current_user.id
+    @user = current_user
     @users = User.joins(:teams).
               joins('INNER JOIN rosters r2 ON teams.id = r2.team_id').
-              where('r2.user_id = ? AND users.id != ?', @user.id, @user.id)
+              where('r2.user_id = ? AND users.id != ?', current_user.id, current_user.id)
   end
 
   def create

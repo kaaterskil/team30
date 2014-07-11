@@ -11,9 +11,9 @@ class UsersController < ApplicationController
 
   def update
     @user.assign_attributes(user_params)
-    if @user.valid? && @user.update
+    if @user.valid? && @user.save
       flash[:success] = 'User updated'
-      redirect_to user_path(params[:id])
+      redirect_to user_path
     else
       flash[:alert] = @user.messages.full_messages.join(', ')
       render :edit
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   private
 
   def find_user
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def user_params
