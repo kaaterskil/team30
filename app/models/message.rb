@@ -4,6 +4,7 @@ class Message < ActiveRecord::Base
   belongs_to :user
 
   scope :sent, where(sent: true)
+  scope :sent_to_team, where(sent: true, is_private: false)
   scope :received, where(sent: false)
 
   validates :user_id, :recipient_id, :sender_id, :message, :sent, presence: :true

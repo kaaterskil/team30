@@ -15,6 +15,7 @@ class Team < ActiveRecord::Base
   has_many :exercises
   has_many :meals
   has_many :weigh_ins
+  has_many :messages, -> { :sent_to_team }
 
   validates :name, presence: true
 
