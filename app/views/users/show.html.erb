@@ -17,6 +17,8 @@
   <div class=""><%= link_to 'Edit', edit_user_path(@user.id) %></div>
 </div>
 
+<%= render template: 'shared/personal_links' %>
+
 <!-- Teams -->
 <div class="">
   <div class="">Your Results</div>
@@ -26,7 +28,7 @@
       <div class="">
         <div class=""><%= team_name %></div>
         <div class="">
-          <% results.each do |v| %>
+          <% results.each do |k, v| %>
           <span class=""><%= sprintf('%d', v) %></span>
           <% end %>
         </div>

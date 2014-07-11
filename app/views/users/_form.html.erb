@@ -1,0 +1,30 @@
+<% flash.each do |key, value| %>
+<%= content_tag :div, value, class: "flash #{key}" %>
+<% end %>
+
+<%= form_for @user do |f| %>
+<div class="field-container">
+  <div class="field-label"><%= f.label :known_by, 'Name' %></div>
+  <div class="field-element"><%= f.text_field :known_by %></div>
+</div>
+
+<div class="field-container">
+  <div class="field-label"><%= f.label :birth_date, 'Birth Date' %></div>
+  <div class="field-element"><%= f.date_field :birth_date, autofocus: true %></div>
+</div>
+
+<div class="field-container">
+  <div class="field-label"><%= f.label :gender, 'Gender' %></div>
+  <div class="field-element"><%= f.select :gender, User::GENDER %></div>
+</div>
+
+<div class="field-container">
+  <div class="field-label"><%= f.label :height, 'Height (inches)' %></div>
+  <div class="field-element"><%= f.text_field :height, maxlength: 2, size: 5 %></div>
+</div>
+
+<div class="field-container">
+  <div class="field-label"></div>
+  <div class="field-element"><%= f.submit 'Save' %></div>
+</div>
+<% end %>
