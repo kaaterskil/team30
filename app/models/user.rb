@@ -180,15 +180,18 @@ class User < ActiveRecord::Base
 
     # Initialize a hash with 30 elements whose keys are dates beginning
     # with the starting date
+    key_date = team.starting_on ? team.starting_on : Date.today
     data = {}
     (0..30).each do |i|
-      date = team.starting_on + i.days
-      data[date] = 0.00
+      key_date = key_date + i.days
+      data[key_date] = 0.00
     end
 
-    # Assigns the net actual calorie instake to the corresponding key.
-    data.each do |date, value|
-      value = meals_cals[date] - exercise_cals[date] + weigh_in_cals[date]
+    # Assigns the net actual calorie intake to the corresponding key.
+    data.each do |key_date, value|
+      value = meals_cals[key_date] if !meals_cals[key_date].nil?
+      value -= exercise_cals[key_date] if !exercise_cals[key_date].nil?
+      value += weigh_in_cals[key_date] if !weigh_in_cals[key_date].nil?
     end
     data
   end
