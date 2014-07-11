@@ -6,17 +6,14 @@ class MealsController < ApplicationController
   before_action :set_user
 
   def index
-    @meals = Meal.joins('INNER JOIN users ON meals.user_id = users.id').
-              where('users.id = ?', current_user.id).
-              order('meals.meal_date DESC')
+    @meals = current_user.meals.order('meal_date DESC')
   end
 
   def create
-    @meal = Meal.new(meal_params)
-    @meal.user_id = current_user.id
+    @meal = current_user.meals.new(meal_params)
+    @meal.team_id = current_user.fetch_active_team
     if @meal.valid? && @meal.save
-      flash[:success] = 'Meal saved!'
-      redirect_to meal_path(@meal.id)
+      redirect_to meal_path(@meal.id), notice: 'Meal saved.'
     else
       flash[:alert] = @meal.errors.full_messages.join(', ')
       render :new
@@ -51,8 +48,7 @@ class MealsController < ApplicationController
   def update
     @meal.assign_attributes(meal_params)
     if @meal.valid? && @meal.save
-      flash[:success] = 'Meal updated'
-      redirect_to meals_path
+      redirect_to meals_path, notice: 'Meal updated.'
     else
       flash[:alert] = @meal.errors.full_messages.join(', ')
       render :edit
@@ -61,7 +57,7 @@ class MealsController < ApplicationController
 
   def destroy
     @meal.destroy!
-    redirect_to meals_path
+    redirect_to meals_path, notice: 'Meal deleted.'
   end
 
   private

@@ -2,7 +2,14 @@
 
 <h2>My Meals</h2>
 
+<% if current_user.fetch_active_team %>
+<div class=""><%= link_to 'Create a Meal', new_meal_path %></div>
+<% end %>
+
 <div class="">
+  <% if @meals.nil? || @meals.empty? %>
+  <div class="">You haven't created any meals yet. You <emphasis>can</emphasis> eat, you know!</div>
+  <% else %>
   <ul>
     <li>
       <div class=""></div>
@@ -12,4 +19,5 @@
     </li>
     <%= render partial: 'meal', collection: @meals %>
   </ul>
+  <% end %>
 </div>

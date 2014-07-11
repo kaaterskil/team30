@@ -3,7 +3,7 @@ class IngredientsController < ApplicationController
   before_action :find_meal, only: [:create, :destroy]
 
   def create
-    @meal.ingredients.create(
+    @ingredient = @meal.ingredients.new(
       user_id: current_user.id,
       team_id: @meal.team_id,
       meal_date: @meal.meal_date,
@@ -11,8 +11,8 @@ class IngredientsController < ApplicationController
       item_description: params[:item_description],
       calories: params[:calories].to_i
     )
-    @meal.save
-    redirect_to meal_path(@meal.id)
+    @ingredient.save
+    redirect_to meal_path(@meal.id), notice: "Ingredient saved."
   end
 
   def destroy

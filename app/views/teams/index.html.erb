@@ -11,11 +11,13 @@
 </div>
 <% end %>
 
-<ul>
-  <li>
-    <div class=""> </div>
-    <div class="">Team Name</div>
-    <div class="">Day</div>
-  </li>
-  <%= render partial: 'team', collection: @teams, data: @data %>
-</ul>
+<div class="">
+  <ul>
+    <li>
+      <div class=""> </div>
+      <div class="">Team Name</div>
+      <div class="">Day</div>
+    </li>
+    <%= render partial: 'team', collection: @teams, data: @data %>
+  </ul>
+</div>
