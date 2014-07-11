@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   class UserNotAvailableException < RuntimeError; end
   class UserNotTeamLeaderException < RuntimeError; end
 
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -31,6 +30,13 @@ class User < ActiveRecord::Base
   validates :height, numericality: { only_integer: true, message: "%{value} is not an integer" }
 
   # ---------- Methods ---------- #
+
+  # Returns all users who have been/are teammates of this user.
+  def get_teammates
+    User.joins(:teams).
+      joins('INNER JOIN rosters r2 ON teams.id = r2.team_id').
+      where('r2.user_id = ? AND users.id != ?', id, id)
+  end
 
   # Returns true if this user is available to join a team, false otherwise.
   # In other words, the method returns true if this user is not assigned
