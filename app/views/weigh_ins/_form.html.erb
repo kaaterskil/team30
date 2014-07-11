@@ -1,0 +1,20 @@
+<% flash.each do |key, value| %>
+<%= content_tag :div, value, class: "flash #{key}" %>
+<% end %>
+
+<%= form_for @weigh_in do |f| %>
+<div class="field-container">
+  <div class="field-label"><%= f.label :entry_date, 'Date' %></div>
+  <div class="field-element"><%= f.date_field :entry_date, autofocus: true %></div>
+</div>
+
+<div class="field-container">
+  <div class="field-label"><%= f.label :measured_weight, 'Weight (lbs)' %></div>
+  <div class="field-element"><%= f.text_field :measured_weight, maxlength: 3, size: 5 %></div>
+</div>
+
+<div class="field-container">
+  <div class="field-label"></div>
+  <div class="field-element"><%= f.submit 'Save' %></div>
+</div>
+<% end %>

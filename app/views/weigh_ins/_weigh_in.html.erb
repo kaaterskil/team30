@@ -1,0 +1,8 @@
+<li>
+  <div class="">
+    <div class=""><%= link_to 'Edit' edit_weigh_in_path(weigh_in.id) %></div>
+    <div class=""><%= link_to 'Delete' weigh_in_path(weigh_in.id), method: :delete, data: {confirm: 'Are you sure?'} %></div>
+  </div>
+  <div class=""><%= weigh_in.entry_date %></div>
+  <div class=""><%= weigh_in.total_calories %></div>
+</li>
