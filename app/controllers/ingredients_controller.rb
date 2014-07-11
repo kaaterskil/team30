@@ -11,8 +11,10 @@ class IngredientsController < ApplicationController
       item_description: params[:item_description],
       calories: params[:calories].to_i
     )
-    @ingredient.save
-    redirect_to meal_path(@meal.id), notice: "Ingredient saved."
+    if !@ingredient.valid? || !@ingredient.save
+      flash[:alert] = @ingredient.errors.full_messages.join(', ')
+    end
+    redirect_to meal_path(@meal.id)
   end
 
   def destroy
