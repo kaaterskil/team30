@@ -1,4 +1,16 @@
-<%= render template: 'shared/session_navigation' %>
-
-<h2>Create a Team</h2>
-<%= render 'form', team: @team %>
+<div id="container">
+  <header id="t3-home-menu">
+  <%= render template: 'shared/session_navigation' %>
+  </header>
+  <div id="content">
+    <div class="row t30-page-top">
+      <div class="small-6 small-offset-1 columns">
+        <h2>Create a Team</h2>
+      </div>
+      <div class="small-5 columns"></div>
+    </div>
+    <%= render 'form', team: @team %>
+  </div>
+  <footer id="t30-footer">
+  </footer>
+</div>
