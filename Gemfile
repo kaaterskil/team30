@@ -29,6 +29,7 @@ gem 'spring',        group: :development
 gem 'devise'
 gem 'groupdate'
 gem 'nutritionix'
+gem 'foundation-rails'
 
 group :development, :test do
   gem 'factory_girl_rails'

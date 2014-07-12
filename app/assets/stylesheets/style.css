@@ -1,0 +1,119 @@
+@font-face {
+    font-family: 'merriweather';
+    src: url('/fonts/merriweather-regular-webfont.eot');
+    src: url('/fonts/merriweather-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/merriweather-regular-webfont.woff') format('woff'),
+         url('/fonts/merriweather-regular-webfont.ttf') format('truetype'),
+         url('/fonts/merriweather-regular-webfont.svg#merriweatherregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body {
+  color: #333;
+  font-family: 'merriweather', Georgia, serif;
+  font-size: 1em;
+  font-weight: normal;
+}
+
+#container {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  top: 0;
+  width: 100%;
+}
+
+#content {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.top-bar {
+  height: 50px;
+  left: 0;
+  opacity: 0.75;
+  filter: alpha(opacity=75);
+  padding: 5px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+}
+
+.top-bar-section ul li > a {
+  font-family: 'merriweather', Georgia, serif;
+}
+
+#t3-home {
+  height: 100%;
+  width: 100%;
+}
+
+#t3-home-landing {
+  background-image: url('/images/EatWith-Naama-in-New-York-1024x682.bw.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  position: absolute;
+  width:100%;
+}
+
+.t3-valign {
+  display: table;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.centered {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.t3-signup-container {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
+  display: block;
+  height: 50px;
+  left: 0;
+  margin: 0 auto;
+  max-width: 800px;
+  position: relative;
+  top: 0;
+  width: 90%;
+  z-index: 2;
+}
+
+.t3-signup-text {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.t3-signup-text span {
+  background-color: transparent;
+  color: #fff;
+  font-size: 1.75em;
+  height: 50px;
+  line-height: 50px;
+  margin: 5px 0;
+  position: relative;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  vertical-align: middle;
+}
+
+.t3-signup-text span a {
+  color: #f60;
+}
+
+.t3-signup-text span a:hover {
+  border-bottom: 1px solid #f60
+}
