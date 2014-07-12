@@ -1,27 +1,38 @@
 <div id="container">
-  <header id="t3-home-menu">
+  <header id="t30-home-menu">
     <% if !user_signed_in? %>
     <%= render template: 'shared/navigation' %>
     <% else %>
     <%= render template: 'shared/session_navigation' %>
     <% end %>
-
-    <% if user_signed_in? %>
-    <div class="">
-      <div class=""><%= link_to 'Create a Team!', new_team_path %></div>
-      <div class=""><%= link_to 'Say Hello', new_message_path %></div>
-    </div>
-    <% end %>
   </header>
   <div id="content">
-    <div id="t3-home">
-      <div id="t3-home-landing"></div>
-      <div class="t3-valign">
+    <div id="t30-home">
+    <% if !user_signed_in? %>
+      <div id="t30-home-landing"></div>
+      <% else %>
+      <div id="t30-loggedin-landing"></div>
+      <% end %>
+      <div class="t30-valign">
         <div class="centered">
-        <div class="t3-signup-container">
-          <span class="t3-signup-text">
-            <span>30 Days of Eating Healthy. Do it with Friends. <%= link_to 'Sign Up Now', new_user_registration_path %></span>
+          <div class="t30-signup-container">
+            <% if !user_signed_in? %>
+            <span class="t30-signup-text">
+              <span>30 Days of Eating Healthy. Do it with Friends. <%= link_to 'Sign Up Now', new_user_registration_path %></span>
             </span>
+            <% else %>
+            <span class="t30-loggedin-text">
+              <span class="t30-loggedin-links"><%= link_to 'Create a Team', new_team_path %></span> |
+              <% team = current_user.fetch_active_team %>
+              <% if !team.nil? %>
+              <span class="t30-loggedin-links">
+                <span class="">Active Team: </span>
+                <span class=""><%= link_to team.name, team_path(team.id) %></span>
+              </span> |
+              <% end %>
+              <span class="t30-loggedin-links"><%= link_to 'Say Hello', new_message_path %></span>
+            </span>
+            <% end %>
           </div>
         </div>
       </div>
