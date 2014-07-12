@@ -1,29 +1,46 @@
-<%= render template: 'shared/session_navigation' %>
+<div id="container">
+  <header id="t3-home-menu">
+    <%= render template: 'shared/session_navigation' %>
+  </header>
+  <div id="content">
+    <div class="row t30-page-top">
+      <div class="small-6 small-offset-1 columns">
+      <h2>Support Your Team!</h2>
+      </div>
+      <div class="small-5 columns"></div>
+    </div>
 
-<h2>Say Hello!</h2>
+    <div class="row">
+      <div class="small-8 small-offset-1 columns">
+        <% flash.each do |key, value| %>
+        <%= content_tag :div, value, class: "flash #{key}" %>
+        <% end %>
 
-<% flash.each do |key, value| %>
-<%= content_tag :div, value, class: "flash #{key}" %>
-<% end %>
+        <%= form_for @message, url: { action: 'create' } do |f| %>
+        <div class="field-container">
+          <div class="field-label"><%= f.label :recipient_id, 'To' %></div>
+          <div class="field-element"><%= f.collection_select :recipient_id , @users, :id, :known_by, {prompt: 'Select a teammate...'} %></div>
+        </div>
 
-<%= form_for @message, url: { action: 'create' } do |f| %>
-<div class="field-container">
-  <div class="field-label"><%= f.label :recipient_id, 'To' %></div>
-  <div class="field-element"><%= f.collection_select :recipient_id , @users, :id, :known_by, {prompt: 'Select a teammate...'} %></div>
+        <div class="field-container">
+          <div class="field-label"></div>
+          <div class="field-element"><%= f.check_box :is_private %><%= f.label :is_private, 'Private' %></div>
+        </div>
+
+        <div class="field-container">
+          <div class="field-label"><%= f.label :content, 'Message' %></div>
+          <div class="field-element"><%= f.text_area :content, rows: 5, cols: 40 %></div>
+        </div>
+
+        <div class="field-container">
+          <div class="field-label"></div>
+          <div class="field-element"><%= f.submit 'Send' %></div>
+        </div>
+        <% end %>
+      </div>
+      <div class="small-3 columns"></div>
+    </div>
+  </div>
+  <footer id="t30-footer">
+  </footer>
 </div>
-
-<div class="field-container">
-  <div class="field-label"><%= f.label :is_private, 'Private' %></div>
-  <div class="field-element"><%= f.check_box :is_private %></div>
-</div>
-
-<div class="field-container">
-  <div class="field-label"><%= f.label :content, 'Message' %></div>
-  <div class="field-element"><%= f.text_area :content, rows: 5, cols: 40 %></div>
-</div>
-
-<div class="field-container">
-  <div class="field-label"></div>
-  <div class="field-element"><%= f.submit 'Send' %></div>
-</div>
-<% end %>
