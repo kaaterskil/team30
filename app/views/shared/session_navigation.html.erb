@@ -1,22 +1,29 @@
-<div>
-  <ul>
-    <li><%= link_to 'Team30', root_path %></li>
-    <li>
-        <span class="">Actions</span>
-        <ul>
-            <li><%= link_to 'My Account', user_path %></li>
-            <% if !current_user.teams.empty? %>
-            <li><%= link_to 'Say Hello', new_message_path %></li>
-            <% end %>
-            <% if current_user.fetch_active_team %>
-            <li><%= link_to 'Enter a Meal', new_meal_path %></li>
-            <li><%= link_to 'Edit/Update a Meal', meals_path %></li>
-            <li><%= link_to 'Enter a Work Out', new_exercise_path %></li>
-            <li><%= link_to 'Weigh In', new_weigh_in_path %></li>
-            <% end %>
+<div class="">
+    <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+            <li class="menu-icon"><%= link_to image_tag('/images/team30-logo.png', height: 40, width: 153), root_path %></li>
         </ul>
-    </li>
-    <li>hello <%= link_to current_user.known_by, user_path %></li>
-    <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
-</ul>
+        <section class="top-bar-section">
+            <ul class="right">
+                <li class="has-dropdown">
+                    <%= link_to 'Actions', root_path %>
+                    <ul class="dropdown">
+                        <li><%= link_to 'My Account', user_path %></li>
+                        <% if !current_user.teams.empty? %>
+                        <li><%= link_to 'Say Hello', new_message_path %></li>
+                        <% end %>
+                        <% if current_user.fetch_active_team %>
+                        <li><%= link_to 'Enter a Meal', new_meal_path %></li>
+                        <li><%= link_to 'Edit/Update a Meal', meals_path %></li>
+                        <li><%= link_to 'Work Out', new_exercise_path %></li>
+                        <li><%= link_to 'Weigh In', new_weigh_in_path %></li>
+                        <% end %>
+                    </ul>
+                </li>
+                <li>hello <%= link_to current_user.known_by, user_path %></li>
+                <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+            </ul>
+        </section>
+    </nav>
 </div>
+
