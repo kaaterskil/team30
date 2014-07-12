@@ -30,6 +30,7 @@ gem 'devise'
 gem 'groupdate'
 gem 'nutritionix'
 gem 'foundation-rails'
+gem 'jquery-slick-rails'
 
 group :development, :test do
   gem 'factory_girl_rails'
