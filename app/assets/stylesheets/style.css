@@ -271,7 +271,7 @@ li.t30-current-user a {
   width: 80px;
 }
 
-.show-element, .team-results, .message-body {
+.show-element, .team-results, .message-body, .list-item-data {
   font-family: 'orator', Helvetica, Arial, sans-serif;
 }
 
@@ -347,6 +347,20 @@ li.t30-current-user a {
   height: 100%;
   position: absolute;
   width:100%;
+}
+
+#t30-meals {
+  background-image: url('/images/BerlinTable.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  position: absolute;
+  width:100%;
+}
+
+.table-container table tr td, .table-container table tr th {
+  font-size: .75rem;
 }
 
 #t30-footer {

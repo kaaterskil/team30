@@ -1,25 +1,49 @@
-<%= render template: 'shared/session_navigation' %>
+<div id="container">
+  <header id="t3-home-menu">
+    <%= render template: 'shared/session_navigation' %>
+    <%= render template: 'shared/personal_links' %>
+  </header>
+  <div id="content">
+    <div id="t30-meals"></div>
 
-<%= render template: 'shared/personal_links' %>
 
-<h2>My Meals</h2>
+    <div class="row t30-user-page-top">
+      <div class="small-7 small-offset-1 columns">
+        <div class="stats-container">
+          <h2>My Meals</h2>
+          <% if current_user.fetch_active_team %>
+          <div class=""><%= link_to 'Create a Meal', new_meal_path %></div>
+          <% end %>
 
-<% if current_user.fetch_active_team %>
-<div class=""><%= link_to 'Create a Meal', new_meal_path %></div>
-<% end %>
+          <div class="table-container">
+            <table class="scrollable-table">
+              <thead class="fixed-thead">
+                <tr>
+                  <th width=""></th>
+                  <th width="">Date</th>
+                  <th width="">Type</th>
+                  <th width="">Calories</th>
+                </tr>
+              </thead>
+              <tbody class="scrollable-tbody">
+                <% if @meals.nil? || @meals.empty? %>
+                <tr>
+                  <td colspan="4">You haven't created any meals yet. You <emphasis>can</emphasis> eat, you know!</td>
+                </tr>
+                <% else %>
+                <%= render partial: 'meal', collection: @meals %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
 
-<div class="">
-  <% if @meals.nil? || @meals.empty? %>
-  <div class="">You haven't created any meals yet. You <emphasis>can</emphasis> eat, you know!</div>
-  <% else %>
-  <ul>
-    <li>
-      <div class=""></div>
-      <div class="">Date</div>
-      <div class="">Type</div>
-      <div class="">Calories</div>
-    </li>
-    <%= render partial: 'meal', collection: @meals %>
-  </ul>
-  <% end %>
+        </div>
+      </div>
+      <div class="small-4 columns"></div>
+    </div>
+
+  </div>
+  <footer id="t30-footer">
+  </footer>
 </div>
+
