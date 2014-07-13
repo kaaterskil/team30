@@ -15,6 +15,7 @@
             <% @data.each do |team, results| %>
             <li class="">
               <div class="team-name"><%= link_to team.name, team_path(team.id) %></div>
+              <div class="team-name"><%= link_to 'My Goals', edit_roster_path(current_user.get_roster(team).id) %></div>
               <div class="team-results">
                 <% results.each do |k, v| %>
                 <span class=""><%= sprintf('%d', v) %></span>

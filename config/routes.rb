@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     resources :users, only: :show
   end
 
+  resources :rosters, only: [:show, :edit, :update]
+
   resources :messages, only: [:index, :new, :create, :show]
 
   resources :meals do

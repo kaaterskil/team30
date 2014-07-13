@@ -318,9 +318,16 @@ li.t30-current-user a {
   padding: 3px 0;
 }
 
-.show-label {
+.show-label, .show-label-long {
   float: left;
   width: 80px;
+}
+
+.show-label-long {
+  font-size: .786rem;
+  margin-right: 10px;
+  text-align: right;
+  width: 120px;
 }
 
 .show-element, .active-team-results, .team-results, .message-body, .list-item-data {
@@ -382,7 +389,7 @@ li.t30-current-user a {
   width: 100%;
 }
 
-.field-label {
+.field-label, .field-label-long {
   display: inline-block;
   float: left;
   margin-right: 7px;
@@ -390,6 +397,10 @@ li.t30-current-user a {
   text-align: right;
   vertical-align: middle;
   width: 120px;
+}
+
+.field-label-long {
+  width: 150px;
 }
 
 .field-element {
@@ -429,6 +440,11 @@ li.t30-current-user a {
   height: 1.817rem;
   min-width: 300px;
   padding: 5px;
+}
+
+#commitToGoal {
+  color: #f60;
+  font-weight: bold;
 }
 
 /*----- Lists ---------------*/

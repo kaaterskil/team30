@@ -38,6 +38,12 @@ class User < ActiveRecord::Base
       where('r2.user_id = ? AND users.id != ?', id, id)
   end
 
+  # Returns the roster for the given team, or nil if the user is
+  # not a member of the given team.
+  def get_roster(team)
+    self.rosters.find_by_team_id(team.id)
+  end
+
   # Returns true if this user is available to join a team, false otherwise.
   # In other words, the method returns true if this user is not assigned
   # to a team that is no longer active.

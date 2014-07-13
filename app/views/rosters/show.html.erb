@@ -1,0 +1,54 @@
+
+<div id="container">
+  <header id="t3-home-menu">
+    <%= render template: 'shared/session_navigation' %>
+    <%= render template: 'shared/personal_links' %>
+  </header>
+  <div id="content">
+    <div id="t30-user"></div>
+
+    <div class="row t30-user-page-top">
+      <div class="small-5 small-offset-2 columns">
+        <div class="stats-container">
+        <h2><%= "My Goals for #{current_user.fetch_active_team.name}" %></h2><div class="">
+          <div class="show-container">
+            <div class="show-label-long">Starting Weight (lbs):</div>
+            <div class="show-element"><%= @roster.starting_weight %></div>
+          </div>
+
+          <div class="show-container">
+            <div class="show-label-long">Activity Level:</div>
+            <div class="show-element"><%= @roster.activity_level %></div>
+          </div>
+
+          <div class="show-container">
+            <div class="show-label-long">Basal Metablic Rate:</div>
+            <div class="show-element"><%= @roster.bmr %></div>
+          </div>
+
+          <div class="show-container">
+            <div class="show-label-long">Avg. Daily Calorie Burn:</div>
+            <div class="show-element"><%= @roster.tdee %></div>
+          </div>
+
+          <div class="show-container">
+            <div class="show-label-long">Goal Weight (lbs):</div>
+            <div class="show-element"><%= @roster.target_weight %></div>
+          </div>
+
+          <div class="show-container">
+            <div class="show-label-long"><strong>Daily Calorie Goal:<strong></div>
+            <div class="show-element"><strong><%= @roster.target_calories_per_day %></strong></div>
+          </div>
+
+          <div class="show-container">
+            <div class="show-label-long">Committed?</div>
+            <div class="show-element"><%= @roster.is_record_locked ? 'You Bet!' : 'Not Yet!' %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="small-5 columns"></div>
+  </div>
+</div>
+</div>

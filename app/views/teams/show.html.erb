@@ -67,11 +67,11 @@
             <div class=""><%= link_to 'Change the Team Name', edit_team_path(@team.id) %></div>
           </div>
           <div class="show-container">
-            <div class=""><%= link_to 'Add team member', new_team_user_path(@team.id) %></div>
+            <div class=""><%= link_to 'Add a team member', new_team_user_path(@team.id) %></div>
           </div>
           <% if @team.users %>
           <div class="show-container">
-            <div class=""><%= link_to 'Remove team member', remove_team_user_path(@team.id) %></div>
+            <div class=""><%= link_to 'Remove a team member', remove_team_user_path(@team.id) %></div>
           </div>
           <% end %>
           <% end %>

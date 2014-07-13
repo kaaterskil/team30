@@ -1,0 +1,51 @@
+
+<div class="">
+  <% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "flash #{key}" %>
+  <% end %>
+
+  <%= form_for @roster do |f| %>
+  <div class="field-container">
+    <div class="field-label"><%= f.label :starting_weight, 'Starting Weight (lbs)' %></div>
+    <div class="field-element"><%= f.text_field :starting_weight, autofocus: true, maxlength: 3, size: 5 %></div>
+  </div>
+
+  <div class="field-container">
+    <div class="field-label"><%= f.label :activity_level, 'Activity Level' %></div>
+    <div class="field-element"><%= f.select :activity_level, Roster::ACTIVITY_LEVEL, prompt: 'Select your intended Activity Level' %></div>
+  </div>
+
+  <div class="show-container">
+    <div class="show-label-long">Basal Metabolic Rate</div>
+    <div class="show-element"><%= "#{@roster.bmr} calories per day" %></div>
+  </div>
+
+  <div class="show-container" style="margin: 12px 0;">
+    <div class="show-label-long">Calorie Burn (TDEE)</div>
+    <div class="show-element"><%= "#{@roster.tdee} calories per day" %></div>
+  </div>
+
+  <% if @roster.tdee > 0 %>
+
+  <div class="field-container">
+    <div class="field-label"><%= f.label :target_weight, 'Goal Weight (lbs)' %></div>
+    <div class="field-element"><%= f.text_field :target_weight, autofocus: true, maxlength: 3, size: 5 %></div>
+  </div>
+
+  <div class="show-container">
+    <div class="show-label-long"><strong>Daily Calorie Goal</strong></div>
+    <div class="show-element"><strong><%= @roster.target_calories_per_day %></strong></div>
+  </div>
+  <% end %>
+
+  <div class="field-container">
+    <div class="field-label"><%= f.label :is_record_locked, 'Commit to Goal' %></div>
+    <div class="field-element"><%= f.check_box :is_record_locked, id: 'goalCommitCheckbox' %></div>
+  </div>
+
+  <div class="field-container">
+    <div class="field-label"></div>
+    <div class=""><%= f.submit 'Compute Goals', id: 'goalSubmitBtn' %></div>
+  </div>
+  <% end %>
+</div>
