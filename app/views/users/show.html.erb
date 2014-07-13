@@ -1,12 +1,7 @@
 <div id="container">
   <header id="t3-home-menu">
     <%= render template: 'shared/session_navigation' %>
-    <d1 class="sub-nav">
-      <dt><h2><%= @user.known_by %></h2></dt>
-      <dd><%= link_to 'My Weigh-Ins', weigh_ins_path %></dd>
-      <dd><%= link_to 'My Work Outs', exercises_path %> |</dd>
-      <dd><%= link_to 'My Meals', meals_path %> |</dd>
-    </dl>
+    <%= render template: 'shared/personal_links' %>
   </header>
   <div id="content">
     <div id="t30-user"></div>
@@ -47,7 +42,11 @@
             <div class="show-label">Height:</div>
             <div class="show-element"><%= @user.height %> inches</div>
           </div>
-          <div class=""><%= link_to 'Edit', edit_user_path %></div>
+
+          <div class="show-container">
+            <div class="show-label"><%= link_to 'Edit', edit_user_path %></div>
+            <div class="show-element"></div>
+          </div>
         </div>
       </div>
     </div>

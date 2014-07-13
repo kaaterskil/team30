@@ -1,5 +1,7 @@
-<span class="">
-  <%= link_to 'My Meals', meals_path %> |
-  <%= link_to 'My Work Outs', exercises_path %> |
-  <%= link_to 'My Weigh-Ins', weigh_ins_path %>
-</span>
+
+<d1 class="sub-nav">
+  <dt><h2><%= @user.known_by %></h2></dt>
+  <dd><%= link_to 'My Weigh-Ins', weigh_ins_path %></dd>
+  <dd><%= link_to 'My Work Outs', exercises_path %> |</dd>
+  <dd><%= link_to 'My Meals', meals_path %> |</dd>
+</dl>
