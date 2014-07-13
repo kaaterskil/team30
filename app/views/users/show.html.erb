@@ -1,49 +1,74 @@
-<%= render template: 'shared/session_navigation' %>
+<div id="container">
+  <header id="t3-home-menu">
+    <%= render template: 'shared/session_navigation' %>
+    <d1 class="sub-nav">
+      <dt><h2><%= @user.known_by %></h2></dt>
+      <dd><%= link_to 'My Weigh-Ins', weigh_ins_path %></dd>
+      <dd><%= link_to 'My Work Outs', exercises_path %> |</dd>
+      <dd><%= link_to 'My Meals', meals_path %> |</dd>
+    </dl>
+  </header>
+  <div id="content">
+    <div id="t30-user"></div>
 
-<h2><%= @user.known_by %></h2>
-
-<!-- Profile -->
-<div class="">
-  <div class="">
-    <div class="">Gender</div>
-    <div class=""><%= @user.gender %></div>
-  </div>
-    <div class="">Birth Date</div>
-    <div class=""><%= @user.birth_date %></div>
-  </div>
-    <div class="">Height</div>
-    <div class=""><%= @user.height %> inches</div>
-  </div>
-  <div class=""><%= link_to 'Edit', edit_user_path %></div>
-</div>
-
-<%= render template: 'shared/personal_links' %>
-
-<!-- Teams -->
-<div class="">
-  <div class="">Your Results</div>
-  <div class="">
-    <ul>
-      <% @data.each do |team_name, results| %>
-      <div class="">
-        <div class=""><%= team_name %></div>
-        <div class="">
-          <% results.each do |k, v| %>
-          <span class=""><%= sprintf('%d', v) %></span>
-          <% end %>
+    <div class="row t30-user-page-top">
+      <div class="small-7 columns">
+        <!-- Teams -->
+        <div class="stats-container">
+          <div class="">Your Results</div>
+          <ul class="team-list">
+            <% @data.each do |team_name, results| %>
+            <li class="">
+              <div class="team-name"><%= team_name %></div>
+              <div class="team-results">
+                <% results.each do |k, v| %>
+                <span class=""><%= sprintf('%d', v) %></span>
+                <% end %>
+              </div>
+            </li>
+            <% end %>
+          </ul>
         </div>
       </div>
-      <% end %>
-    </ul>
-  </div>
-</div>
+      <div class="small-4 small-offset-1 column">
+        <!-- Profile -->
+        <div class="stats-container">
+          <div class="show-container">
+            <div class="show-label">Gender:</div>
+            <div class="show-element"><%= @user.gender %></div>
+          </div>
 
-<!-- Messages -->
-<div class=""><%= link_to 'Say Hello', new_message_path %></div>
-<div class="">
-  <% if @user.messages.empty? %>
-  <div class="">You haven't been supporting your teammates. Send them a message!</div>
-  <% else %>
-  <%= render partial: 'shared/messages', locals: { messages: @user.messages } %>
-  <% end %>
-</div>
+          <div class="show-container">
+            <div class="show-label">Birth Date:</div>
+            <div class="show-element"><%= @user.birth_date.strftime('%B %e, %Y') %></div>
+          </div>
+
+          <div class="show-container">
+            <div class="show-label">Height:</div>
+            <div class="show-element"><%= @user.height %> inches</div>
+          </div>
+          <div class=""><%= link_to 'Edit', edit_user_path %></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="row">
+      <div class="small-7 columns">
+        <div class="stats-container">
+          <div class="">
+            <% if @user.messages.empty? %>
+            <div class="">You haven't been supporting your teammates. Send them a message!</div>
+            <% else %>
+            <%= render partial: 'shared/messages', locals: { messages: @user.messages } %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="small-5 columns"></div>
+    </div>
+
+  </div> <!-- end content -->
+  <footer id="t30-footer">
+  </footer>
+</div> <!-- end container -->

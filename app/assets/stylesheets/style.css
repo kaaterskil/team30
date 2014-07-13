@@ -31,6 +31,17 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'orator';
+    src: url('/fonts/OratorStd_0.eot');
+    src: url('/fonts/OratorStd_0.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/OratorStd_0.woff') format('woff'),
+         url('/fonts/OratorStd_0.ttf') format('truetype'),
+         url('/fonts/OratorStd_0.svg#OratorStd_0') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
 body {
   color: #333;
   font-family: 'merriweather', Georgia, serif;
@@ -97,6 +108,17 @@ label {
 select {
   font-size: .786rem !important;
   width: 60% !important;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 #container {
@@ -214,6 +236,12 @@ li.t30-current-user a {
   width: 100%;
 }
 
+.t30-user-page-top {
+  margin-top: 100px;
+  top: 0;
+  width: 100%;
+}
+
 .field-container {
   clear: both;
   width: 100%;
@@ -231,6 +259,94 @@ li.t30-current-user a {
 
 .field-element {
   float: left;
+}
+
+.show-container {
+  clear: both;
+  padding: 3px 0;
+}
+
+.show-label {
+  float: left;
+  width: 80px;
+}
+
+.show-element, .team-results, .message-body {
+  font-family: 'orator', Helvetica, Arial, sans-serif;
+}
+
+.sub-nav {
+  background-color: #fff;
+  height: 30px;
+  margin: 0 0 !important;
+  padding: 0 15px 0 55px;
+  position: fixed;
+  top: 50px;
+  width: 100%;
+  z-index: 3;
+}
+
+.sub-nav dt {
+  text-transform: none !important;
+  margin-bottom: 0px !important;
+}
+
+.sub-nav dt h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.sub-nav dd {
+  float: right;
+  font-family: 'merriweather', Georgia, serif;
+  font-size: 0.75rem;
+  margin: 0;
+  padding: 10px 5px 0 5px;
+}
+
+.team-list {
+  margin: 1.25rem 0;
+}
+
+.team-results {
+  font-size: .75rem;
+}
+
+.stats-container {
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 10px 0;
+  opacity: 0.85;
+  padding: 10px;
+}
+
+.message-header {
+  clear: both;
+}
+
+.team-list, .message-recipient {
+  border-top: 1px dotted #999;
+  margin-top: 3px;
+}
+
+.message-date {
+  color: #666;
+  font-size: .75rem;
+  margin-left: 10px;
+}
+
+.message-body {
+  font-size: 0.75rem;
+}
+
+#t30-user {
+  background-image: url('/images/athlete.bw.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  position: absolute;
+  width:100%;
 }
 
 #t30-footer {
