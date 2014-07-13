@@ -42,6 +42,8 @@
     font-style: normal;
 }
 
+/*----- General Styles ---------------*/
+
 body {
   color: #333;
   font-family: 'merriweather', Georgia, serif;
@@ -121,6 +123,8 @@ li {
   padding: 0;
 }
 
+/*----- Page Geometry ---------------*/
+
 #container {
   height: 100%;
   overflow-x: hidden;
@@ -137,6 +141,12 @@ li {
   top: 0;
 }
 
+#t30-footer {
+  margin-bottom: 20px;
+}
+
+/*----- Main Navigation Overrides ---------------*/
+
 .top-bar {
   height: 50px;
   left: 0;
@@ -152,6 +162,40 @@ li {
 .top-bar-section ul li > a {
   font-family: 'merriweather', Georgia, serif;
 }
+
+/*----- Sub-Navigation Overrides ---------------*/
+
+.sub-nav {
+  background-color: #fff;
+  height: 30px;
+  margin: 0 0 !important;
+  opacity: 0.85;
+  padding: 0 15px 0 55px;
+  position: fixed;
+  top: 50px;
+  width: 100%;
+  z-index: 3;
+}
+
+.sub-nav dt {
+  text-transform: none !important;
+  margin-bottom: 0px !important;
+}
+
+.sub-nav dt h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.sub-nav dd {
+  float: right;
+  font-family: 'merriweather', Georgia, serif;
+  font-size: 0.75rem;
+  margin: 0;
+  padding: 10px 5px 0 5px;
+}
+
+/*----- Home Page ---------------*/
 
 #t30-home {
   height: 100%;
@@ -230,6 +274,8 @@ li.t30-current-user a {
   color: #fff !important;
 }
 
+/*----- General Content ---------------*/
+
 .t30-page-top {
   margin-top: 50px;
   top: 0;
@@ -242,24 +288,29 @@ li.t30-current-user a {
   width: 100%;
 }
 
-.field-container {
-  clear: both;
-  width: 100%;
+#t30-user, #t30-meals, #t30-exercises, #t30-weigh-ins {
+  background-image: url('/images/athlete.bw.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  position: absolute;
+  width:100%;
 }
 
-.field-label {
-  display: inline-block;
-  float: left;
-  margin-right: 7px;
-  padding: 0.5rem 0;
-  text-align: right;
-  vertical-align: middle;
-  width: 120px;
+#t30-meals {
+  background-image: url('/images/BerlinTable.jpg');
 }
 
-.field-element {
-  float: left;
+#t30-exercises {
+  background-image: url('/images/rowing_machine_txrowing.bw.jpg');
 }
+
+#t30-weigh-ins {
+  background-image: url('/images/group-happy-women-nnw.bw.jpg');
+}
+
+/*----- Data Display ---------------*/
 
 .show-container {
   clear: both;
@@ -273,35 +324,6 @@ li.t30-current-user a {
 
 .show-element, .team-results, .message-body, .list-item-data {
   font-family: 'orator', Helvetica, Arial, sans-serif;
-}
-
-.sub-nav {
-  background-color: #fff;
-  height: 30px;
-  margin: 0 0 !important;
-  padding: 0 15px 0 55px;
-  position: fixed;
-  top: 50px;
-  width: 100%;
-  z-index: 3;
-}
-
-.sub-nav dt {
-  text-transform: none !important;
-  margin-bottom: 0px !important;
-}
-
-.sub-nav dt h2 {
-  margin: 0;
-  padding: 0;
-}
-
-.sub-nav dd {
-  float: right;
-  font-family: 'merriweather', Georgia, serif;
-  font-size: 0.75rem;
-  margin: 0;
-  padding: 10px 5px 0 5px;
 }
 
 .team-list {
@@ -339,30 +361,29 @@ li.t30-current-user a {
   font-size: 0.75rem;
 }
 
-#t30-user {
-  background-image: url('/images/athlete.bw.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%;
-  position: absolute;
-  width:100%;
+/*----- Forms ---------------*/
+
+.field-container {
+  clear: both;
+  width: 100%;
 }
 
-#t30-meals {
-  background-image: url('/images/BerlinTable.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%;
-  position: absolute;
-  width:100%;
+.field-label {
+  display: inline-block;
+  float: left;
+  margin-right: 7px;
+  padding: 0.5rem 0;
+  text-align: right;
+  vertical-align: middle;
+  width: 120px;
 }
+
+.field-element {
+  float: left;
+}
+
+/*----- Lists ---------------*/
 
 .table-container table tr td, .table-container table tr th {
   font-size: .75rem;
-}
-
-#t30-footer {
-  margin-bottom: 20px;
 }

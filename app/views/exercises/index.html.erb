@@ -1,24 +1,45 @@
-<%= render template: 'shared/session_navigation' %>
+<div id="container">
+  <header id="t3-home-menu">
+    <%= render template: 'shared/session_navigation' %>
+    <%= render template: 'shared/personal_links' %>
+  </header>
+  <div id="content">
+    <div id="t30-exercises"></div>
 
-<%= render template: 'shared/personal_links' %>
+    <div class="row t30-user-page-top">
+      <div class="small-6 small-offset-1 columns">
+        <div class="stats-container">
+          <h2>My Work Outs</h2>
+          <% if current_user.fetch_active_team %>
+          <div class=""><%= link_to 'Hit the Gym', new_exercise_path %></div>
+          <% end %>
 
-<h2>My Work Outs</h2>
+          <div class="table-container">
+            <table class="scrollable-table">
+              <thead class="fixed-thead">
+                <tr>
+                  <th width=""></th>
+                  <th width="">Date</th>
+                  <th width="">Calories Burned</th>
+                </tr>
+              </thead>
+              <tbody class="scrollable-tbody">
+                <% if @exercises.nil? || @exercises.empty? %>
+                <tr><td colspan="3">You haven't worked out yet!</td></tr>
+                <% else %>
+                <%= render partial: 'exercise', collection: @exercises %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
 
-<% if current_user.fetch_active_team %>
-<div class=""><%= link_to 'Hit the Gym', new_exercise_path %></div>
-<% end %>
+        </div>
+      </div>
+      <div class="small-5 columns"></div>
+    </div>
 
-<div class="">
-  <% if @exercises.nil? || @exercises.empty? %>
-  <div class="">You haven't worked out yet!</div>
-  <% else %>
-  <ul>
-    <li>
-      <div class=""></div>
-      <div class="">Date</div>
-      <div class="">Calories Burned</div>
-    </li>
-    <%= render partial: 'exercise', collection: @exercises %>
-  </ul>
-  <% end %>
+  </div>
+  <footer id="t30-footer">
+  </footer>
 </div>
+

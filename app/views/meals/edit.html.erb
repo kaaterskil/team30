@@ -1,4 +1,22 @@
-<%= render template: 'shared/session_navigation' %>
+<div id="container">
+  <header id="t3-home-menu">
+    <%= render template: 'shared/session_navigation' %>
+    <%= render template: 'shared/personal_links' %>
+  </header>
+  <div id="content">
+    <div id="t30-meals"></div>
 
-<h2><%= "Edit my #{@meal.meal_type} from #{@meal.meal_date}" %></h2>
-<%= render 'form', meal: @meal %>
+    <div class="row t30-user-page-top">
+      <div class="small-5 small-offset-2 columns">
+        <div class="stats-container">
+          <h2><%= "Edit my #{@meal.meal_type}" %></h2>
+          <div class=""><%= @meal.meal_date.strftime('%A, %B %e') %></div>
+          <%= render 'form', meal: @meal, btn_text: 'Save' %>
+        </div>
+      </div>
+      <div class="small-5 columns"></div>
+    </div>
+  </div>
+  <footer id="t30-footer">
+  </footer>
+</div>

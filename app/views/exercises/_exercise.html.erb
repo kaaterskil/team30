@@ -1,8 +1,8 @@
-<li>
-  <div class="">
-    <div class=""><%= link_to 'Edit', edit_exercise_path(exercise.id) %></div>
-    <div class=""><%= link_to 'Delete', exercise_path(exercise.id), method: :delete, data: {confirm: 'Are you sure?'} %></div>
-  </div>
-  <div class=""><%= exercise.entry_date %></div>
-  <div class=""><%= exercise.total_calories %></div>
-</li>
+<tr>
+  <td width="" align="center" class="">
+    <span class="list_item_link"><%= link_to 'Edit', edit_exercise_path(exercise.id) %></span> |
+    <span class="list-item-link"><%= link_to 'Delete', exercise_path(exercise.id), method: :delete, data: {confirm: 'Are you sure?'} %></span>
+  </td>
+  <td width="" class="list-item-data"><%= exercise.entry_date %></td>
+  <td width="" align="right" class="list-item-data"><%= exercise.total_calories %></td>
+</tr>

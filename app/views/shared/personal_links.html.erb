@@ -1,6 +1,6 @@
 
 <d1 class="sub-nav">
-  <dt><h2><%= @user.known_by %></h2></dt>
+  <dt><h2><%= current_user.known_by %></h2></dt>
   <dd><%= link_to 'My Weigh-Ins', weigh_ins_path %></dd>
   <dd><%= link_to 'My Work Outs', exercises_path %> |</dd>
   <dd><%= link_to 'My Meals', meals_path %> |</dd>

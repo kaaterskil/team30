@@ -1,8 +1,8 @@
-<li>
-  <div class="">
-    <div class=""><%= link_to 'Edit', edit_weigh_in_path(weigh_in.id) %></div>
-    <div class=""><%= link_to 'Delete', weigh_in_path(weigh_in.id), method: :delete, data: {confirm: 'Are you sure?'} %></div>
-  </div>
-  <div class=""><%= weigh_in.entry_date %></div>
-  <div class=""><%= weigh_in.total_calories %></div>
-</li>
+<tr>
+  <td width="" align="center" class="">
+    <span class="list-item-link"><%= link_to 'Edit', edit_weigh_in_path(weigh_in.id) %></span> |
+    <span class="list-item-link"><%= link_to 'Delete', weigh_in_path(weigh_in.id), method: :delete, data: {confirm: 'Are you sure?'} %></span>
+  </td>
+  <td width="" class="list-item-data"><%= weigh_in.entry_date %></td>
+  <td width="" align="right" class="list-item-data"><%= weigh_in.total_calories %></td>
+</tr>

@@ -1,31 +1,28 @@
 
-<div class="row">
-  <div class="small-6 small-offset-1 columns">
-    <% flash.each do |key, value| %>
-    <%= content_tag :div, value, class: "flash #{key}" %>
-    <% end %>
+<div class="">
+  <% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "flash #{key}" %>
+  <% end %>
 
-    <%= form_for @meal do |f| %>
-    <div class="field-container">
-      <div class="field-label"><%= f.label :meal_date, 'Date' %></div>
-      <div class="field-element"><%= f.date_field :meal_date, autofocus: true, placeholder: "#{Date.today}" %></div>
-    </div>
-
-    <div class="field-container">
-      <div class="field-label"><%= f.label :team_id, 'Team' %></div>
-      <div class="field-element"><%= f.collection_select :team_id, @user.teams, :id, :name, prompt: 'Select a team...' %></div>
-    </div>
-
-    <div class="field-container">
-      <div class="field-label"><%= f.label :meal_type, 'Type' %></div>
-      <div class="field-element"><%= f.select :meal_type, Meal::MEAL_TYPES, prompt: 'Select a meal type...' %></div>
-    </div>
-
-    <div class="field-container">
-      <div class="field-label"></div>
-      <div class="field-element"><%= f.submit 'Save' %></div>
-    </div>
-    <% end %>
+  <%= form_for @meal do |f| %>
+  <div class="field-container">
+    <div class="field-label"><%= f.label :meal_date, 'Date' %></div>
+    <div class="field-element"><%= f.date_field :meal_date, autofocus: true, placeholder: "#{Date.today}" %></div>
   </div>
-  <div class="small-5 columns"></div>
+
+  <div class="field-container">
+    <div class="field-label"><%= f.label :team_id, 'Team' %></div>
+    <div class="field-element"><%= f.collection_select :team_id, @user.teams, :id, :name, prompt: 'Select a team...' %></div>
+  </div>
+
+  <div class="field-container">
+    <div class="field-label"><%= f.label :meal_type, 'Type' %></div>
+    <div class="field-element"><%= f.select :meal_type, Meal::MEAL_TYPES, prompt: 'Select a meal type...' %></div>
+  </div>
+
+  <div class="field-container">
+    <div class="field-label"></div>
+    <div class="field-element"><%= f.submit btn_text %></div>
+  </div>
+  <% end %>
 </div>

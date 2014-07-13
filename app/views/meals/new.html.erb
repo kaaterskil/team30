@@ -1,15 +1,20 @@
 <div id="container">
   <header id="t3-home-menu">
     <%= render template: 'shared/session_navigation' %>
+    <%= render template: 'shared/personal_links' %>
   </header>
   <div id="content">
-    <div class="row t30-page-top">
-      <div class="small-6 small-offset-1 columns">
+    <div id="t30-meals"></div>
+
+    <div class="row t30-user-page-top">
+      <div class="small-5 small-offset-2 columns">
+        <div class="stats-container">
         <h2>Create a Meal</h2>
+        <%= render 'form', meal: @meal, btn_text: 'Next' %>
+      </div>
       </div>
       <div class="small-5 columns"></div>
     </div>
-    <%= render 'form', meal: @meal %>
   </div>
   <footer id="t30-footer">
   </footer>
