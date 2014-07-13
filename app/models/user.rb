@@ -59,6 +59,18 @@ class User < ActiveRecord::Base
     team
   end
 
+  # Returns users who are not members of the given team.
+  #
+  # @param team The team to exclude
+  #
+  # @return A collection of non-team members.
+  def non_team_members(team)
+    User.joins('LEFT OUTER JOIN rosters r ON users.id = r.user_id').
+      joins('LEFT OUTER JOIN teams t ON r.team_id = t.id').
+      where('(t.id != ? OR t.id IS NULL) AND users.id != ?', team.id, self.id).
+      order('users.known_by')
+  end
+
   # Adds the given user to the given team if a) this user is the team leader
   # and b) if the challenge has not started yet and c) the given user isn't
   # already a team member.
@@ -74,7 +86,8 @@ class User < ActiveRecord::Base
     raise UserNotAvailableException if !user.available?
 
     team.users << user
-    user.save
+    team.save!
+    user.save!
     true
   end
 

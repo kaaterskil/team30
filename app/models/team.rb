@@ -61,6 +61,7 @@ class Team < ActiveRecord::Base
     end
     starting_on.nil? ? '0' : 'Closed'
   end
+
   # Returns true if all team members have committed to their individual plan
   # and a challenge can be started, false otherwise. A TeamInProgressError is
   # raised if the challenge has already started.

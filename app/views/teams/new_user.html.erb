@@ -1,0 +1,34 @@
+<div id="container">
+  <header id="t3-home-menu">
+    <%= render template: 'shared/session_navigation' %>
+    <%= render template: 'shared/personal_links' %>
+  </header>
+  <div id="content">
+    <div id="t30-loggedin-landing"></div>
+
+    <div class="row t30-user-page-top">
+      <div class="small-6 small-offset-5 columns">
+        <div class="stats-container">
+        <h2>Add Someone to the Team.</h2>
+          <% flash.each do |key, value| %>
+          <%= content_tag :div, value, class: "flash #{key}" %>
+          <% end %>
+
+          <%= form_for @team, url: add_team_user_path, method: 'post' do |f| %>
+          <div class="field-container">
+            <div class="field-label"><%= f.label :users, 'Name' %></div>
+            <div class="field-element"><%= f.collection_select :users, current_user.non_team_members(@team), :id, :known_by, {include_blank: 'Select a candidate...'} %></div>
+          </div>
+
+          <div class="field-container">
+            <div class="field-label"></div>
+            <div class=""><%= f.submit 'Save' %></div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="small-1 column"></div>
+    </div>
+
+  </div>
+</div>

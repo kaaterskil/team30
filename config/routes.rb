@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   get 'users/user/edit', to: 'users#edit', as: 'edit_user'
   patch 'users/user', to: 'users#update'
 
+  get 'teams/:id/users', to: 'teams#new_user', as: 'new_team_user'
+  post 'teams/:id/users', to: 'teams#add_user', as: 'add_team_user'
+  get 'teams/:id/users/drop', to: 'teams#drop_user', as: 'drop_team_user'
+  delete 'teams/:id/users/drop', to: 'teams#remove_user', as: 'remove_team_user'
+
   resources :teams do
     resources :users, only: :show
   end

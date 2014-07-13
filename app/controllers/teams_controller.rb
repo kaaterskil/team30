@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :find_team, only: [:edit, :show, :update, :destroy]
+  before_action :find_team, only: [:edit, :show, :update, :destroy, :new_user, :add_user, :drop_user, :remove_user]
 
   def index
     @teams = Team.all
@@ -48,6 +48,40 @@ class TeamsController < ApplicationController
     redirect_to teams_path
   end
 
+  def new_user
+    @users = current_user.non_team_members(@team)
+  end
+
+  def add_user
+    user = User.find(team_params[:users])
+    begin
+      current_user.add_user_to_team(@team, user)
+    rescue Team::TeamInProgressError
+      flash[:alert] = 'Team is already in progress'
+    rescue Team::TeamIsClosedError
+      flash[:alert] = 'Team is closed'
+    rescue User::UserNotAvailableException
+      flash[:alert] = "#{user.known_by} is not available"
+    end
+    if !flash[:alert].nil?
+      redirect_to team_path(@team.id)
+    else
+      render :new_user
+    end
+  end
+
+  def drop_user
+    @users = @team.users
+  end
+
+  def remove_user
+    user = User.find(team_params[:users])
+    @team.users.delete(user)
+    user.save!
+    @team.save!
+    redirect_to team_path(@team.id)
+  end
+
   private
 
   def find_team
@@ -65,6 +99,6 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-    params.require(:team).permit(:name, :starting_on, :ending_on, :is_target_weight_locked, :is_active)
+    params.require(:team).permit(:name, :starting_on, :ending_on, :is_target_weight_locked, :is_active, :users)
   end
 end

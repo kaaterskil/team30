@@ -62,10 +62,19 @@
             <div class="show-element"><%= @team.ending_on.strftime('%B %e, %Y') if @team.ending_on %></div>
           </div>
 
+          <% if current_user == @team.leader %>
           <div class="show-container">
-            <div class="show-label"><%= link_to 'Edit', edit_team_path(@team.id) if current_user == @team.leader %></div>
-            <div class="show-element"></div>
+            <div class=""><%= link_to 'Change the Team Name', edit_team_path(@team.id) %></div>
           </div>
+          <div class="show-container">
+            <div class=""><%= link_to 'Add team member', new_team_user_path(@team.id) %></div>
+          </div>
+          <% if @team.users %>
+          <div class="show-container">
+            <div class=""><%= link_to 'Remove team member', remove_team_user_path(@team.id) %></div>
+          </div>
+          <% end %>
+          <% end %>
         </div>
       </div>
     </div>

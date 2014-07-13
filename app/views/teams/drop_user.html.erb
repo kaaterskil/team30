@@ -1,0 +1,34 @@
+<div id="container">
+  <header id="t3-home-menu">
+    <%= render template: 'shared/session_navigation' %>
+    <%= render template: 'shared/personal_links' %>
+  </header>
+  <div id="content">
+    <div id="t30-loggedin-landing"></div>
+
+    <div class="row t30-user-page-top">
+      <div class="small-6 small-offset-5 columns">
+        <div class="stats-container">
+        <h2>Remove a team member.</h2>
+          <% flash.each do |key, value| %>
+          <%= content_tag :div, value, class: "flash #{key}" %>
+          <% end %>
+
+          <%= form_for @team, url: remove_team_user_path, method: 'delete' do |f| %>
+          <div class="field-container">
+            <div class="field-label"><%= f.label :users, 'Name' %></div>
+            <div class="field-element"><%= f.collection_select :users, @team.users, :id, :known_by, {include_blank: 'Select a member...'} %></div>
+          </div>
+
+          <div class="field-container">
+            <div class="field-label"></div>
+            <div class=""><%= f.submit 'Remove' %></div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="small-1 column"></div>
+    </div>
+
+  </div>
+</div>
