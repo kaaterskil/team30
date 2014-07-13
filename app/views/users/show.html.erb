@@ -12,9 +12,9 @@
         <div class="stats-container">
           <div class="">Your Results</div>
           <ul class="team-list">
-            <% @data.each do |team_name, results| %>
+            <% @data.each do |team, results| %>
             <li class="">
-              <div class="team-name"><%= team_name %></div>
+              <div class="team-name"><%= link_to team.name, team_path(team.id) %></div>
               <div class="team-results">
                 <% results.each do |k, v| %>
                 <span class=""><%= sprintf('%d', v) %></span>
@@ -67,7 +67,5 @@
       <div class="small-5 columns"></div>
     </div>
 
-  </div> <!-- end content -->
-  <footer id="t30-footer">
-  </footer>
+  </div>
 </div> <!-- end container -->

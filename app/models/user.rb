@@ -152,7 +152,7 @@ class User < ActiveRecord::Base
   # daily results.
   def fetch_data
     result = {}
-    teams.each { |team| result[team.name] = fetch_team_data(team) }
+    teams.each { |team| result[team] = fetch_team_data(team) }
     result
   end
 
