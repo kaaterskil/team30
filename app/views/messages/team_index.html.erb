@@ -1,8 +1,26 @@
-<%= render template: 'shared/session_navigation' %>
+<div id="container">
+  <header id="t3-home-menu">
+    <%= render template: 'shared/session_navigation' %>
+    <%= render template: 'shared/personal_links' %>
+  </header>
+  <div id="content">
+    <div id="t30-loggedin-landing"></div>
 
-<h2><%= @team.name %> Messages</h2>
+    <div class="row t30-user-page-top">
+      <div class="small-7 small-offset-4 columns">
+        <div class="stats-container">
+          <h2><%= link_to @team.name, team_path(@team.id) %></h2>
+          <div class="">
+            <% if @team.messages.empty? %>
+            <div class="">You haven't been supporting your teammates. Send them a message!</div>
+            <% else %>
+            <%= render partial: 'shared/messages', locals: { messages: @team.messages } %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="small-1 column"></div>
+    </div>
 
-<div class="">
-  <div class=""><%= link_to 'Say Hello', new_team_message_path(@team.id) %></div>
+  </div>
 </div>
-<%= render partial: 'shared/messages', locals: { messages: @team.messages } %>

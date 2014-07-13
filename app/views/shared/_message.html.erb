@@ -1,7 +1,7 @@
 <li>
   <div class="message-container">
     <div class="message-header">
-    <div class="message-recipient"><%= message.recipient.known_by %><span class="message-date"><%= message.created_at.strftime('%a %b %e %l:%M %P') %></span></div>
+    <div class="message-recipient"><%= "#{message.sender.known_by} to #{message.recipient.known_by}" %><span class="message-date"><%= message.created_at.strftime('%a %b %e %l:%M %P') %></span></div>
     </div>
     <div class="message-body"><%= message.content %></div>
   </div>

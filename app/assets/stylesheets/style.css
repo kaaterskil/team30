@@ -109,7 +109,10 @@ label {
 
 select {
   font-size: .786rem !important;
-  /* width: 60% !important; */
+  height: 1.817rem;
+  max-width: 300px;
+  padding: 5px;
+  width: auto !important;
 }
 
 ul {
@@ -288,7 +291,7 @@ li.t30-current-user a {
   width: 100%;
 }
 
-#t30-user, #t30-meals, #t30-exercises, #t30-weigh-ins {
+#t30-user, #t30-meals, #t30-exercises, #t30-weigh-ins, #t30-messages {
   background-image: url('/images/athlete.bw.jpg');
   background-position: center center;
   background-repeat: no-repeat;
@@ -307,6 +310,10 @@ li.t30-current-user a {
 }
 
 #t30-weigh-ins {
+  background-image: url('/images/accomplishment.bw.jpg');
+}
+
+#t30-messages {
   background-image: url('/images/group-happy-women-nnw.bw.jpg');
 }
 
@@ -314,6 +321,7 @@ li.t30-current-user a {
 
 .show-container {
   clear: both;
+  min-height: 1.375rem;
   padding: 3px 0;
 }
 
@@ -322,7 +330,7 @@ li.t30-current-user a {
   width: 80px;
 }
 
-.show-element, .team-results, .message-body, .list-item-data {
+.show-element, .active-team-results, .team-results, .message-body, .list-item-data {
   font-family: 'orator', Helvetica, Arial, sans-serif;
 }
 
@@ -330,7 +338,12 @@ li.t30-current-user a {
   margin: 1.25rem 0;
 }
 
-.team-results {
+.active-team-results {
+  line-height: 1.6;
+  margin-top: 3px;
+}
+
+.team-results, .roster-list {
   font-size: .75rem;
 }
 
@@ -346,7 +359,7 @@ li.t30-current-user a {
   clear: both;
 }
 
-.team-list, .message-recipient, .servings-header {
+.team-list, .roster-list, .message-recipient, .servings-header {
   border-top: 1px dotted #999;
   margin-top: 3px;
 }

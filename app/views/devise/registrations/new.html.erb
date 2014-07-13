@@ -3,62 +3,59 @@
     <%= render template: 'shared/navigation' %>
   </header>
   <div id="content">
+    <div id="t30-home-landing"></div>
+
     <div class="row t30-page-top">
-      <div class="small-6 small-offset-1 columns">
-        <h2>Sign up</h2>
+      <div class="small-5 small-offset-1 columns">
+        <div class="stats-container">
+          <h2>Sign up</h2>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
+
+          <div class="field-container">
+            <div class="field-label"><%= f.label :known_by, 'Name' %></div>
+            <div class="field-element"><%= f.text_field :known_by %></div>
+          </div>
+
+          <div class="field-container">
+            <div class="field-label"><%= f.label :email, 'Email' %></div>
+            <div class="field-element"><%= f.email_field :email, autofocus: true %></div>
+          </div>
+
+          <div class="field-container">
+            <div class="field-label"><%= f.label :password, 'Password' %></div>
+            <div class="field-element"><%= f.password_field :password, autocomplete: "off" %></div>
+          </div>
+
+          <div class="field-container">
+            <div class="field-label"><%= f.label :password_confirmation, 'Confirm Password' %></div>
+            <div class="field-element"><%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+          </div>
+
+          <div class="field-container">
+            <div class="field-label"><%= f.label :birth_date, 'Birth Date' %></div>
+            <div class="field-element"><%= f.date_field :birth_date %></div>
+          </div>
+
+          <div class="field-container">
+            <div class="field-label"><%= f.label :gender, 'Gender' %></div>
+            <div class=""><%= f.select :gender, User::GENDER %></div>
+          </div>
+
+          <div class="field-container">
+            <div class="field-label"><%= f.label :height, 'Height (in inches)' %></div>
+            <div class="field-element"><%= f.text_field :height, maxlength: 2, size: 5 %></div>
+          </div>
+
+          <div class="field-container">
+            <div class="field-label"></div>
+            <div class=""><%= f.submit "Sign Up" %></div>
+          </div>
+          <% end %>
+        </div>
       </div>
-      <div class="small-5 columns"></div>
+      <div class="small-6 columns"></div>
     </div>
 
-    <div class="row">
-      <div class="small-6 small-offset-1 columns">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= devise_error_messages! %>
-
-        <div class="field-container">
-          <div class="field-label"><%= f.label :known_by, 'Name' %></div>
-          <div class="field-element"><%= f.text_field :known_by %></div>
-        </div>
-
-        <div class="field-container">
-          <div class="field-label"><%= f.label :email, 'Email' %></div>
-          <div class="field-element"><%= f.email_field :email, autofocus: true %></div>
-        </div>
-
-        <div class="field-container">
-          <div class="field-label"><%= f.label :password, 'Password' %></div>
-          <div class="field-element"><%= f.password_field :password, autocomplete: "off" %></div>
-        </div>
-
-        <div class="field-container">
-          <div class="field-label"><%= f.label :password_confirmation, 'Confirm Password' %></div>
-          <div class="field-element"><%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-        </div>
-
-        <div class="field-container">
-          <div class="field-label"><%= f.label :birth_date, 'Birth Date' %></div>
-          <div class="field-element"><%= f.date_field :birth_date %></div>
-        </div>
-
-        <div class="field-container">
-          <div class="field-label"><%= f.label :gender, 'Gender' %></div>
-          <div class=""><%= f.select :gender, User::GENDER %></div>
-        </div>
-
-        <div class="field-container">
-          <div class="field-label"><%= f.label :height, 'Height (in inches)' %></div>
-          <div class="field-element"><%= f.text_field :height, maxlength: 2, size: 5 %></div>
-        </div>
-
-        <div class="field-container">
-          <div class="field-label"></div>
-          <div class="field-element"><%= f.submit "Sign Up" %></div>
-        </div>
-        <% end %>
-      </div>
-      <div class="small-5 columns"></div>
-    </div>
   </div>
-  <footer id="t30-footer">
-  </footer>
 </div>
