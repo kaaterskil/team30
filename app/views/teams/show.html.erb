@@ -1,47 +1,79 @@
-<%= render template: 'shared/session_navigation' %>
+<div class="container">
+  <header id="t3-home-menu">
+    <%= render template: 'shared/session_navigation' %>
+    <%= render template: 'shared/personal_links' %>
+  </header>
+  <div id="content">
+    <div id="t30-loggedin-landing"></div>
 
-<h2><%= "Team #{@team.name}" %></h2>
+    <div class="row t30-user-page-top">
+    <div class="small-7 columns">
+        <div class="stats-container">
+          <h2><%= "Team #{@team.name}" %></h2>
+          <h2>Day <%= @team.day_no %></h2>
 
-<div class="">Day <%= @team.day_no %></div>
+          <!-- Results -->
+          <div class="show-container">
+            <div class="team-name"><strong>Results</strong></div>
+            <div class="team-list">
+              <div class="active-team-results">
+              <% @data.each do |v| %>
+              <span><%= sprintf('% .0f', v) %></span>
+              <% end %>
+              </div>
+            </div>
+          </div>
 
-<div class=""><%= link_to 'Team Messages', team_messages_path(@team.id) %></div>
+          <!-- Roster -->
+          <div class="show-container">
+            <div class="team-name"><strong>Roster</strong></div>
+            <ul>
+              <%= render partial: 'user', collection: @users %>
+            </ul>
+          </div>
 
-<!-- Team Information -->
-<div class="">
-  <div class="field-container">
-    <div class="field-label">Name</div>
-    <div class="field-element"><%= @team.name %></div>
-  </div>
-  <div class="field-container">
-    <div class="field-label">Leader</div>
-    <div class="field-element"><%= @team.leader.known_by %></div>
-  </div>
-  <div class="field-container">
-    <div class="field-label">Status</div>
-    <div class="field-element"><%= @team.status %></div>
-  </div>
-  <div class="field-container">
-    <div class="field-label">Starting On</div>
-    <div class="field-element"><%= @team.starting_on %></div>
-  </div>
-  <div class="field-container">
-    <div class="field-label">Ending On</div>
-    <div class="field-element"><%= @team.ending_on %></div>
+        </div>
+      </div>
+      <div class="small-4 small-offset-1 column">
+        <div class="stats-container">
+          <!-- Team Profile -->
+          <div class="show-container">
+            <div class="show-label">Name</div>
+            <div class="show-element"><%= @team.name %></div>
+          </div>
+
+          <div class="show-container">
+            <div class="show-label">Leader</div>
+            <div class="show-element"><%= @team.leader.known_by %></div>
+          </div>
+
+          <div class="show-container">
+            <div class="show-label">Status</div>
+            <div class="show-element"><%= @team.status %></div>
+          </div>
+
+          <div class="show-container">
+            <div class="show-label">Starting On</div>
+            <div class="show-element"><%= @team.starting_on.strftime('%B %e, %Y') if @team.starting_on %></div>
+          </div>
+
+          <div class="show-container">
+            <div class="show-label">Ending On</div>
+            <div class="show-element"><%= @team.ending_on.strftime('%B %e, %Y') if @team.ending_on %></div>
+          </div>
+
+          <div class="show-container">
+            <div class="show-label"><%= link_to 'Edit', edit_team_path(@team.id) if current_user == @team.leader %></div>
+            <div class="show-element"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
-<!-- Results -->
-<div class="">
-  <div class="">Results</div>
-  <% @data.each do |v| %>
-  <span class=""><%= sprintf('% .0f', v) %></span>
-  <% end %>
-</div>
 
-<!-- Roster -->
-<div class="">
-  <div class="">Roster</div>
-  <ul>
-    <%= render partial: 'user', collection: @users %>
-  </ul>
-</div>
+
+
+

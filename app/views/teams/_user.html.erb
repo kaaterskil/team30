@@ -1,10 +1,10 @@
-<li>
+<li class="roster-list">
   <% if user == current_user %>
-  <div class=""><%= link_to user.known_by, user_path(user.id) %></div>
+  <div class="roster-name"><%= link_to current_user.known_by, user_path %></div>
   <% else %>
-  <div class=""><%= user.known_by %></div>
+  <div class="team-name"><%= user.known_by %></div>
   <% end %>
-  <div class="">
+  <div class="team-results">
     <% @team_data[user.id].each do |k, v| %>
     <span class=""><%= sprintf('%d', v) %></span>
     <% end %>
