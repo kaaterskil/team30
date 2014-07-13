@@ -1,61 +1,92 @@
-<%= render template: 'shared/session_navigation' %>
+<div id="container">
+  <header id="t3-home-menu">
+    <%= render template: 'shared/session_navigation' %>
+    <%= render template: 'shared/personal_links' %>
+  </header>
+  <div id="content">
+    <div id="t30-meals"></div>
 
-<h2><%= "#{@meal.meal_type} on #{@meal.meal_date}" %></h2>
+    <div class="row t30-user-page-top">
+      <div class="small-8 small-offset-1 columns">
+        <div class="stats-container">
+          <h2><%= "#{@meal.meal_type} on #{@meal.meal_date.strftime('%A, %B %e')}" %></h2>
 
-<div class=""><%= link_to 'All meals', meals_path %></div>
+          <div class="servings-container">
+            <div class="servings-header"></div>
+            <% search_form_options = {method: 'POST', id: 'homeSearchForm'} %>
+            <%= form_tag(nutritionix_query_path, search_form_options) do %>
+            <div class="field-container">
+              <div class="field-label">Add a Serving:</div>
+              <div class="field-element">
+                <span class="t30-left"><%= text_field_tag('query', '', placeholder: 'Search...') %></span>
+                <span class="t30-postfix"><%= submit_tag('Search', id: 'submitHomeSearch', name: 'submitHomeSearch') %></span>
+              </div>
+            </div>
+            <% end %>
 
-<div class="">
-  <div class="">Servings</div>
-  <div class="">
-    <div class="">Search</div>
-    <% search_form_options = {method: 'POST', id: 'homeSearchForm'} %>
-    <%= form_tag(nutritionix_query_path, search_form_options) do %>
-    <div class="field-container">
-      <div class="field-element">
-        <%= text_field_tag('query', '', placeholder: 'Search for foods') %>
+            <% if !@hits.nil? %>
+            <div class="servings-container">
+              <% flash.each do |key, value| %>
+              <%= content_tag :div, value, class: "flash #{key}" %>
+              <% end %>
+
+              <% results_form_options = { method: 'POST', id: 'resultsForm' } %>
+              <%= form_tag(meal_ingredients_path(@meal.id), results_form_options) do %>
+              <%= hidden_field_tag('item_description', '', id: 'selectedDescription') %>
+              <%= hidden_field_tag('calories', '', id: 'selectedCalories') %>
+              <div class="field-container">
+                <div class="field-label">Results:</div>
+                <div class="field-element">
+                  <% select_options = { prompt: 'Select an item...', id: 'searchResultsSelect' } %>
+                  <span class="t30-left"><%= select_tag('item_id', options_for_select(@foods), select_options) %></span>
+                  <span class="t30-postfix"><%= submit_tag('Add to Meal', name: 'submitResults', id: 'submitResultsBtn') %></span>
+                </div>
+              </div>
+              <% end %>
+            </div>
+            <% end %>
+
+            <div class="servings-container">
+              <div class="servings-header">Selected Servings</div>
+
+              <div class="table-container">
+                <table class="scrollable-table">
+                  <thead class="fixed-thead">
+                    <tr>
+                      <th width=""></th>
+                      <th width="">Description</th>
+                      <th width="">Calories</th>
+                    </tr>
+                  </thead>
+                  <tbody class="scrollable-tbody">
+                    <% if @ingredients.nil? || @ingredients.empty? %>
+                    <tr>
+                      <td colspan="3">You haven't selected any servings yet.</td>
+                    </tr>
+                    <% else %>
+                    <%= render partial: 'ingredient', collection: @ingredients %>
+                    <tr>
+                      <td colspan="2" class="">Total calories:</td>
+                      <td width="" align="right" class="list-item-data"><%= @meal.total_calories %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+              <div class="t30-button"><%= link_to 'Done', meals_path %></div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
 
-    <div class="field-container">
-      <div class="field-element">
-        <%= submit_tag('Search', id: 'submitHomeSearch', name: 'submitHomeSearch') %>
-      </div>
-    </div>
-    <% end %>
   </div>
-
-  <% if !@hits.nil? %>
-  <div class="">
-    <div class="">Results</div>
-    <% flash.each do |key, value| %>
-    <%= content_tag :div, value, class: "flash #{key}" %>
-    <% end %>
-
-    <% results_form_options = { method: 'POST', id: 'resultsForm' } %>
-    <%= form_tag(meal_ingredients_path(@meal.id), results_form_options) do %>
-    <%= hidden_field_tag('item_description', '', id: 'selectedDescription') %>
-    <%= hidden_field_tag('calories', '', id: 'selectedCalories') %>
-    <div class="field-container">
-      <div class="field-element">
-      <% select_options = { prompt: 'Select an item...', id: 'searchResultsSelect' } %>
-        <%= select_tag('item_id', options_for_select(@foods), select_options) %>
-      </div>
-    </div>
-
-    <div class="field-container">
-      <div class="field-element">
-        <%= submit_tag('Save', name: 'submitResults', id: 'submitResultsBtn') %>
-      </div>
-    </div>
-    <% end %>
-  </div>
-  <% end %>
-
-  <div class="">
-    <div class="">Selected Servings</div>
-    <ul>
-      <%= render partial: 'ingredient', collection: @ingredients %>
-    </ul>
-    <div class=""><%= "Total calories: #{@meal.total_calories}" %></div>
-  </div>
+  <footer id="t30-footer">
+  </footer>
 </div>
+
+
+
+
+

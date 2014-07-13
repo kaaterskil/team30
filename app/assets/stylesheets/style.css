@@ -92,7 +92,7 @@ input[type=checkbox] {
   height: 1rem !important;
 }
 
-input[type='submit'] {
+input[type='submit'], .t30-button a {
   background-color: #f60;
   border: 1px solid #222;
   color: #fff;
@@ -109,7 +109,7 @@ label {
 
 select {
   font-size: .786rem !important;
-  width: 60% !important;
+  /* width: 60% !important; */
 }
 
 ul {
@@ -336,7 +336,7 @@ li.t30-current-user a {
 
 .stats-container {
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 7px;
   margin: 10px 0;
   opacity: 0.85;
   padding: 10px;
@@ -346,9 +346,17 @@ li.t30-current-user a {
   clear: both;
 }
 
-.team-list, .message-recipient {
+.team-list, .message-recipient, .servings-header {
   border-top: 1px dotted #999;
   margin-top: 3px;
+}
+
+.servings-container {
+  clear: both;
+}
+
+.servings-header {
+  padding: 3px 0;
 }
 
 .message-date {
@@ -380,6 +388,41 @@ li.t30-current-user a {
 
 .field-element {
   float: left;
+}
+
+.t30-button {
+  margin-bottom: 7px;
+}
+
+.t30-button a {
+  color: #fff !important;
+}
+
+.t30-button a:hover {
+  text-decoration: none;
+}
+
+.t30-left {
+  float:left;
+}
+
+.t30-left input {
+  border-right: none;
+}
+
+.t30-postfix input {
+  padding: 5px !important;
+}
+
+#searchResultsSelect, #searchResultsSelect option {
+  max-width: 300px;
+  width: 300px;
+}
+
+#searchResultsSelect {
+  height: 1.817rem;
+  min-width: 300px;
+  padding: 5px;
 }
 
 /*----- Lists ---------------*/

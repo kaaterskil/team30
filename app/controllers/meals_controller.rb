@@ -13,7 +13,7 @@ class MealsController < ApplicationController
     @meal = current_user.meals.new(meal_params)
     @meal.team_id = current_user.fetch_active_team
     if @meal.valid? && @meal.save
-      redirect_to meal_path(@meal.id), notice: 'Meal saved.'
+      redirect_to meal_path(@meal.id)
     else
       flash[:alert] = @meal.errors.full_messages.join(', ')
       render :new
@@ -48,7 +48,7 @@ class MealsController < ApplicationController
   def update
     @meal.assign_attributes(meal_params)
     if @meal.valid? && @meal.save
-      redirect_to meals_path, notice: 'Meal updated.'
+      redirect_to meals_path
     else
       flash[:alert] = @meal.errors.full_messages.join(', ')
       render :edit
@@ -57,7 +57,7 @@ class MealsController < ApplicationController
 
   def destroy
     @meal.destroy!
-    redirect_to meals_path, notice: 'Meal deleted.'
+    redirect_to meals_path
   end
 
   private
