@@ -1,8 +1,20 @@
 <li class="roster-list">
   <% if user == current_user %>
-  <div class="roster-name"><%= link_to current_user.known_by, user_path %></div>
+  <div class="roster-name"><%= link_to current_user.known_by, user_path %>
+    <% if @team.status == 'Getting Organized' && user.rosters.find_by_team_id(@team.id).is_record_locked %>
+    <span class="team-meta"> (Committed to Goal)</span>
+    <% else %>
+    <span class="team-meta"> (Not yet committed)</span>
+    <% end %>
+  </div>
   <% else %>
-  <div class="team-name"><%= user.known_by %></div>
+  <div class="team-name"><%= user.known_by %>
+    <% if @team.status == 'Getting Organized' && user.rosters.find_by_team_id(@team.id).is_record_locked %>
+    <span class="team-meta"> (Committed to Goal)</span>
+    <% else %>
+    <span class="team-meta"> (Not yet committed)</span>
+    <% end %>
+  </div>
   <% end %>
   <div class="team-results">
     <% @team_data[user.id].each do |k, v| %>

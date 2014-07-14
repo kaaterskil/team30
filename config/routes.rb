@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'users/user', to: 'users#show', as: 'user'
   get 'users/user/edit', to: 'users#edit', as: 'edit_user'
   patch 'users/user', to: 'users#update'
+  post 'users/user/start', to: 'users#start_team', as: 'start_team'
 
   get 'teams/:id/users', to: 'teams#new_user', as: 'new_team_user'
   post 'teams/:id/users', to: 'teams#add_user', as: 'add_team_user'

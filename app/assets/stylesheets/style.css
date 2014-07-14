@@ -272,6 +272,11 @@ li.t30-current-user a {
 
 /*----- General Content ---------------*/
 
+.alert {
+  color: #f00;
+  font-family: 'orator', Helvetica, Arial, sans-serif;
+}
+
 .t30-page-top {
   margin-top: 50px;
   top: 0;
@@ -345,6 +350,10 @@ li.t30-current-user a {
 
 .team-results, .roster-list {
   font-size: .75rem;
+}
+
+.team-meta {
+  font-size: 0.5rem;
 }
 
 .stats-container {

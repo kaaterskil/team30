@@ -7,7 +7,7 @@
     <div id="t30-loggedin-landing"></div>
 
     <div class="row t30-user-page-top">
-    <div class="small-7 columns">
+      <div class="small-7 columns">
         <div class="stats-container">
           <h2><%= "Team #{@team.name}" %></h2>
           <h2>Day <%= @team.day_no %></h2>
@@ -17,9 +17,9 @@
             <div class="team-name"><strong>Results</strong></div>
             <div class="team-list">
               <div class="active-team-results">
-              <% @data.each do |v| %>
-              <span><%= sprintf('% .0f', v) %></span>
-              <% end %>
+                <% @data.each do |v| %>
+                <span><%= sprintf('% .0f', v) %></span>
+                <% end %>
               </div>
             </div>
           </div>
@@ -69,9 +69,18 @@
           <div class="show-container">
             <div class=""><%= link_to 'Add a team member', new_team_user_path(@team.id) %></div>
           </div>
-          <% if @team.users %>
+          <% if !@team.users.empty? %>
           <div class="show-container">
             <div class=""><%= link_to 'Remove a team member', remove_team_user_path(@team.id) %></div>
+          </div>
+          <% end %>
+          <% if @team.status == 'Getting Organized' %>
+          <% flash.each do |key, value| %>
+          <%= content_tag :div, value, class: "flash #{key}" %>
+          <% end %>
+          <div class="show-container">
+            <div class="show-label"></div>
+            <div class=""><%= button_to 'Start Challenge', start_team_path %></div>
           </div>
           <% end %>
           <% end %>

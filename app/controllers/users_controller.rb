@@ -20,6 +20,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def start_team
+    begin
+      team = current_user.fetch_active_team
+      @user.start_challenge(team)
+    rescue Team::TeamInProgressError
+      flash[:alert] = 'The team is already in progress.'
+    rescue Team::TeamIsClosedError
+      flash[:alert] = 'The team is closed.'
+    rescue Team::TeamHasUncommittedMembersError
+      flash[:alert] = 'There are uncommitted team members.'
+    end
+    redirect_to team_path(team)
+  end
+
   private
 
   def find_user

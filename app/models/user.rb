@@ -125,6 +125,7 @@ class User < ActiveRecord::Base
     team.starting_on = Date.today
     team.ending_on = 30.days.from_now
     team.is_active = true
+    team.is_target_weight_locked = true
     team.save
     true
   end
