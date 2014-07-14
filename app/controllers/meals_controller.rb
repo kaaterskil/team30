@@ -11,8 +11,8 @@ class MealsController < ApplicationController
 
   def create
     @meal = current_user.meals.new(meal_params)
-    @meal.team_id = current_user.fetch_active_team
-    if @meal.valid? && @meal.save
+    @meal.team_id = current_user.fetch_active_team.id
+    if @meal.save
       redirect_to meal_path(@meal.id)
     else
       flash[:alert] = @meal.errors.full_messages.join(', ')

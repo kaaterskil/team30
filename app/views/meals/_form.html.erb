@@ -11,11 +11,6 @@
   </div>
 
   <div class="field-container">
-    <div class="field-label"><%= f.label :team_id, 'Team' %></div>
-    <div class="field-element"><%= f.collection_select :team_id, @user.teams, :id, :name, prompt: 'Select a team...' %></div>
-  </div>
-
-  <div class="field-container">
     <div class="field-label"><%= f.label :meal_type, 'Type' %></div>
     <div class="field-element"><%= f.select :meal_type, Meal::MEAL_TYPES, prompt: 'Select a meal type...' %></div>
   </div>
