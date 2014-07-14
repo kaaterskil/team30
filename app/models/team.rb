@@ -56,10 +56,10 @@ class Team < ActiveRecord::Base
   # Returns the number of days into the challenge, or zero if the challenge
   # has not started. Returns 'Closed' if the challenge is closed.
   def day_no
-    if !starting_on.nil? && is_active
-      (Date.today - starting_on + 1).days.to_s
+    if !self.starting_on.nil?
+      (Date.today - self.starting_on + 1).days.to_s
     end
-    starting_on.nil? ? '0' : 'Closed'
+    self.starting_on.nil? ? '0' : 'Closed'
   end
 
   # Returns true if all team members have committed to their individual plan
@@ -91,6 +91,6 @@ class Team < ActiveRecord::Base
     calories_from_exercise = exercises.where('entry_date = ?', challenge_date).sum(:total_calories)
     calories_from_weigh_ins = weigh_ins.where('entry_date = ?', challenge_date).sum(:total_calories)
     total_calories = calories_from_meals - calories_from_exercise + calories_from_weigh_ins
-    (total_calories - target) / target
+    (total_calories - target) / target * 100
   end
 end

@@ -185,7 +185,7 @@ class User < ActiveRecord::Base
   def fetch_team_stats(team)
     target_intake = rosters.select('target_calories_per_day').
                             where('team_id = ?', team.id)
-    fetch_team_data.values.map{ |v| (v - target_intake) / target_intake }
+    fetch_team_data.values.map{ |v| ((v - target_intake) / target_intake) * 100  }
   end
 
   # Returns daily net actual calorie intake. Note: this method uses the
