@@ -28,6 +28,6 @@ class RostersController < ApplicationController
   end
 
   def roster_params
-    params.require(:roster).permit(:user_id, :team_id, :starting_weight, :activity_level, :bmt, :tdee, :target_weight, :target_calories_per_day, :is_record_locked, :submit)
+    params.require(:roster).permit(:user_id, :team_id, :starting_weight, :activity_level, :bmr, :tdee, :target_weight, :target_calories_per_day, :is_record_locked, :submit)
   end
 end

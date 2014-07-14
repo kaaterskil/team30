@@ -7,14 +7,14 @@
     <div id="t30-user"></div>
 
     <div class="row t30-user-page-top">
-      <div class="small-7 small-offset-1 columns">
+      <div class="small-8 small-offset-1 columns">
         <div class="stats-container">
           <% title_txt = @roster.starting_weight.nil? ? 'Create' : '' %>
           <h2><%= "#{title_txt} My 30 Day Goal for #{current_user.fetch_active_team.name}" %></h2>
           <%= render 'form', roster: @roster %>
         </div>
       </div>
-      <div class="small-4 columns"></div>
+      <div class="small-3 columns"></div>
     </div>
   </div>
 </div>

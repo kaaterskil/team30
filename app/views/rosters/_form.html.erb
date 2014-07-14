@@ -25,7 +25,7 @@
     <div class="show-element"><%= "#{@roster.tdee} calories per day" %></div>
   </div>
 
-  <% if @roster.tdee > 0 %>
+  <% if !@roster.tdee.nil? %>
 
   <div class="field-container">
     <div class="field-label"><%= f.label :target_weight, 'Goal Weight (lbs)' %></div>
