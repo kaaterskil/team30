@@ -87,9 +87,9 @@ class Team < ActiveRecord::Base
   # the given challlenge date
   def get_daily_performance(challenge_date)
     target = rosters.sum(:target_calories_per_day)
-    calories_from_meals = meals.sum(:total_calories).where('meal_date = ?', challenge_date)
-    calories_from_exercise = exercises.sum(:total_calories).where('entry_date = ?', challenge_date)
-    calories_from_weigh_ins = weigh_ins.sum(:total_calories).where('entry_date = ?', challenge_date)
+    calories_from_meals = meals.where('meal_date = ?', challenge_date).sum(:total_calories)
+    calories_from_exercise = exercises.where('entry_date = ?', challenge_date).sum(:total_calories)
+    calories_from_weigh_ins = weigh_ins.where('entry_date = ?', challenge_date).sum(:total_calories)
     total_calories = calories_from_meals - calories_from_exercise + calories_from_weigh_ins
     (total_calories - target) / target
   end
