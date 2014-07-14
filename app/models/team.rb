@@ -24,7 +24,7 @@ class Team < ActiveRecord::Base
   # Returns trus if the team starting date is set the ending date has not
   # been reached, false otherwise.
   def is_in_progress?
-    return !starting_on.nil? && ending_on >= Date.today
+    return starting_on && ending_on >= Date.today
   end
 
   # Returns true if the team ending date has passed, false otherwise.
@@ -56,10 +56,11 @@ class Team < ActiveRecord::Base
   # Returns the number of days into the challenge, or zero if the challenge
   # has not started. Returns 'Closed' if the challenge is closed.
   def day_no
-    if !self.starting_on.nil?
-      (Date.today - self.starting_on + 1).days.to_s
+    today = Date.today
+    if starting_on && (ending_on > today}
+      (today - starting_on + 1).days.to_s
     end
-    self.starting_on.nil? ? '0' : 'Closed'
+    is_active ? 0 : 'Closed'
   end
 
   # Returns true if all team members have committed to their individual plan
@@ -73,7 +74,7 @@ class Team < ActiveRecord::Base
   def fetch_data
     data = []
     (0..30).each do |i|
-      if !starting_on.nil?
+      if starting_on
         challenge_date = starting_on + i.days
         data[i] = get_daily_performance(challenge_date)
       else
@@ -91,6 +92,7 @@ class Team < ActiveRecord::Base
     calories_from_exercise = exercises.where('entry_date = ?', challenge_date).sum(:total_calories)
     calories_from_weigh_ins = weigh_ins.where('entry_date = ?', challenge_date).sum(:total_calories)
     total_calories = calories_from_meals - calories_from_exercise + calories_from_weigh_ins
-    (total_calories - target) / target * 100
+    (total_calories > 0) ? ((total_calories - target) / target * 100) : 0
+  else
   end
 end
